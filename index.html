@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+	<title>学生信息管理系统</title>
+
+	<link rel="stylesheet" type="text/css" href="test.css">
+
+	<script type="text/javascript" src="test.js"></script>
+
+	<script type="text/javascript">
+		var num = 0;
+		var allStudent = 0;
+		var students =new Array();
+		var ten = 0;
+		var current = 0;
+		var parameter =new Array();
+		var backModifyIndex;
+		var ids = new Array("0","1","2","3","4","5","6","7","8","9");
+
+		for(var i=0 ; i < 10 ; i++){
+			parameter[i] = i;
+		}
+
+		students[0] = new student("11603080423","杨强","计算机学院","软件工程","2016","4","19");
+		students[1] = new student("11603080411","王桐","计算机学院","软件工程","2016","4","19");
+		students[2] = new student("11603080412","王源栋","计算机学院","软件工程","2016","4","19");
+		students[3] = new student("11603080412","胡倩","计算机学院","软件工程","2016","4","19");
+		students[4] = new student("11603080414","王国瑜","计算机学院","软件工程","2016","4","19");
+		students[5] = new student("11603080415","周流飞","计算机学院","软件工程","2016","4","19");
+		students[6] = new student("11603080416","高王星","计算机学院","软件工程","2016","4","19");
+		students[7] = new student("11603080417","康海燕","计算机学院","软件工程","2016","4","19");
+		students[8] = new student("11603080418","冉彗","计算机学院","软件工程","2016","4","19");
+		students[9] = new student("11603080419","胡浩天","计算机学院","软件工程","2016","4","19");
+		students[10] = new student("11603080420","程若兰","计算机学院","软件工程","2016","4","19");
+		students[11] = new student("11603080421","杨坚强","计算机学院","软件工程","2016","4","19");
+		students[12] = new student("11603080444","孙金","计算机学院","软件工程","2016","4","19");
+		students[13] = new student("11603080445","魏吉","计算机学院","软件工程","2016","4","19");
+		students[14] = new student("11603080446","流氓","计算机学院","软件工程","2016","4","19");
+
+		
+
+	</script>
+
+	<style type="text/css">
+		body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+		body{font:20px"微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+		a{color:#2d374b;text-decoration:none} 
+		a:hover{color:#cd0200;text-decoration:underline} 
+		em{font-style:normal} 
+		li{list-style:none} 
+		img{border:0;vertical-align:middle} 
+		table{border-collapse:collapse;border-spacing:0} 
+		p{word-wrap:break-word} 
+	</style>
+
+</head>
+<body>
+
+
+<div class="see" id="see">
+	
+	<div class="addPanel">
+
+		<span><br/>学号 <input type="textarea" id="see2" class="input" disabled="true"></span>
+		<span><br/>姓名 <input type="textarea" id="see3" class="input" disabled="true"></span>
+		<span><br/>学院 <input type="textarea" id="see4" class="input" disabled="true"></span>
+		<span><br/>专业 <input type="textarea" id="see5" class="input" disabled="true"></span>
+		<span><br/>年级 <input type="textarea" id="see6" class="input" disabled="true"></span>
+		<span><br/>班级 <input type="textarea" id="see7" class="input" disabled="true"></span>
+		<span><br/>年龄 <input type="textarea" id="see8" class="input" disabled="true"><br/><br/></span>
+
+		<button class="button button5" onclick="backFromSee()">返回</button>
+	</div>
+</div>
+
+<div class="modify" id="modify">
+	<div class="addPanel">
+		<span><br/>学号 <input type="textarea" id="modify2" class="input3"></span>
+		<span><br/>姓名 <input type="textarea" id="modify3" class="input3"></span>
+		<span><br/>学院 <input type="textarea" id="modify4" class="input3"></span>
+		<span><br/>专业 <input type="textarea" id="modify5" class="input3"></span>
+		<span><br/>年级 <input type="textarea" id="modify6" class="input3"></span>
+		<span><br/>班级 <input type="textarea" id="modify7" class="input3"></span>
+		<span><br/>年龄 <input type="textarea" id="modify8" class="input3"><br/><br/></span>
+
+		<button class="button6 button" onclick="sureFromModify()">保存</button>
+		<button class="button7 button" onclick="backFromModify()">返回</button>
+	</div>
+</div>
+
+<div class="add" id="add">
+	<div class="addPanel">
+		<span><br/>学号 <input type="textarea" id="add2" class="input2"></span>
+		<span><br/>姓名 <input type="textarea" id="add3" class="input2"></span>
+		<span><br/>学院 <input type="textarea" id="add4" class="input2"></span>
+		<span><br/>专业 <input type="textarea" id="add5" class="input2"></span>
+		<span><br/>年级 <input type="textarea" id="add6" class="input2"></span>
+		<span><br/>班级 <input type="textarea" id="add7" class="input2"></span>
+		<span><br/>年龄 <input type="textarea" id="add8" class="input2"><br/><br/></span>
+
+		<button class="button6 button" onclick="sureFromAdd()">确定</button>
+		<button class="button7 button" onclick="backFromAdd()">返回</button>
+	</div>
+</div>
+
+<div class="allWidth back">
+	
+	<!--第一层-->
+	<div class="top">
+		<span class="font_999">学生信息管理系统</span>
+	</div>
+
+	<div class="top_button">
+		<button class="button1 button" onclick="addLine()">新增</button>
+		<button class="button2 button" onclick="deleteLine()">删除</button>
+	</div>
+
+	<div class="center" id="center">
+		<div class="center_top">
+			<span>
+				<input  id="check" type="checkbox" onClick="checkAll()">
+				<span class="top1">序号</span>
+				<span class="top2">学号</span>
+				<span class="top3">姓名</span>
+				<span class="top4">学院</span>
+				<span class="top5">专业</span>
+				<span class="top6">年级</span>
+				<span class="top7">班级</span>
+				<span class="top8">年龄</span>
+				<span class="top9">操作</span>
+			</span>
+		</div>
+
+		<div id="content"></div>
+	</div>
+
+	<div class="buttom">
+		<span id="span">
+			第1页,共27条 (每页显示10条)
+		</span>
+		<button class="button4 button" onclick="nextPage()">下一页</button>
+		<button class="button3 button" onclick="beforPage()">上一页</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+		Rwrite();
+</script>
+</body>
+</html>
