@@ -1,65 +1,147 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 
+<title>我的小网页... lalala</title>
+
 <head>
-<style>
-#header {
-    background-color:black;
-    color:white;
-    text-align:center;
-    padding:5px;
+<!--设置段落文本的颜色-->
+<style>p{color:whitesmoke}</style>
+<!--设置链接的颜色-->
+<style>a{color:cyan}</style>
+
+<!--下面的方法是对应的鼠标点击事件-->
+<script>
+
+function forFun1()
+{
+ document.getElementById("field").value="你个傻逼 啦啦啦  智商-55";
 }
-#nav {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:710px;
-    width:100px;
-    float:left;
-    padding:5px;	      
+
+function forFun2()
+{
+ document.getElementById("field").value="   哟  还想走  智商-44";
 }
-#section {
-    width:1200px;
-    text-align:center;
-    float:left;
-    padding:10px;	 	 
+
+function forFun3()
+{
+ document.getElementById("field").value="很有感触吗 个逗逼 智商-3";
 }
-#footer {
-    background-color:black;
-    color:white;
-    clear:both;
-    text-align:center;
-   padding:5px;	 	 
+
+function forFun4()
+{
+ document.getElementById("field").value="图片很好看吗  智商无下限";
 }
-</style>
+
+function forFun5()
+{
+ document.getElementById("field").value="智商为负了还登山...逗逼";
+}
+
+function forFun6()
+{
+ document.getElementById("field").value="唉 点下面的链接走吧煞笔";
+ document.getElementById("linked").href = "http://www.tuniu.com/";
+}
+
+function forFun7()
+{
+ document.getElementById("field").value=" 还想自己输东西...真是天真";
+}
+
+</script>
 </head>
 
-<body>
+<!--定义文本体的背景颜色 和 背景图片-->
+<body bgcolor = "pink" background="http://www.cgvoo.com/data/attachment/forum/201611/20/184127eu7k5ffuzuw1lcwm.jpg"
+style=" background-repeat:no-repeat ;
+background-size:100% 100%;
+background-attachment: fixed;">
+ 
 
-<div id="header">
-<h1>City Gallery</h1>
-</div>
+<!--定义一个二级标题 , 并在里面放了一个谷歌的链接-->
+<h2 align="center"><a href="https://www.google.com.hk/?hl=zh-cn" style="text-decoration:none;color:black">我的小网页 啦啦啦...</a></h2>
 
-<div id="nav">
-London<br>
-Paris<br>
-Tokyo<br>
-</div>
 
-<div id="section">
-<h2>London</h2>
-<p>
-London is the capital city of England. It is the most populous city in the United Kingdom,
-with a metropolitan area of over 13 million inhabitants.
+<!--定义第一个段落文本，里面有三个链接-->
+<br/><p align="center"><b>
+
+<a href="https://www.baidu.com/" style="text-decoration:none;color:whitesmoke">我是谁 。</a>
+
+<a href="http://map.baidu.com/" style="text-decoration:none;color:whitesmoke">我在哪儿 。</a>
+
+<a href="https://www.baidu.com/" style="text-decoration:none;color:whitesmoke" target="-blanck">我要干什么 。</a>
+
+</b></p></br>
+
+
+<!--第二个段落文本，设置了中间对齐属性-->
+<p align="center">
+<big>
+
+
+<!--设置了一个图片链接到知乎网，设置了链接的地址 和 打开时新开一个窗口-->
+<a href="https://www.zhihu.com/" target="-blanck">
+<img src="http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1606/28/c1/23489227_1467127698631_800x600.jpg" width="800" height="600" />
+</a>
+
+
+<!--一段图片下面的文字-->
+<br/><br/>你最想做的是什么呢？
+<br/><br/>我不知道 . . .
+<br/><br/>我呢？<br/><br/><br/>
+
+
+<!--一个图片-->
+<br/>
+<img src="https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/6609c93d70cf3bc75a3f0cf7d600baa1cd112aea.jpg" width="800" height="600" />
+
+
+<!--定义了一个链接，连接到下面的输入框，设置了颜色 和 不要下划线, 并且绑定了点击事件-->
+<a href="#field" style="color:whitesmoke; text-decoration:none">
+<b onclick = "forFun6()">
+<br/><br/><br/>一直想去看最广的海 看波涛翻滚 . . . . . .
+</b>
+</a>
+
+
+<!--定义了一张图片，设置了点击事件-->
+<br/><br/><br/>
+<img src="http://abc.2008php.com/2014_Website_appreciate/2014-03-14/20140314012437.jpg" width="800" height="600" / onclick = "forFun4()">
+
+
+<!--为文本加粗，并设置了点击事件-->
+<b onclick = "forFun5()">
+<br/><br/><br/>一心想登最高的山峰 看云起云落 . . . . . .
+</b>
+
+
+<!--为文本加粗，并设置了点击事件-->
+<br/><br/><br/><b onclick = "forFun3()">
+可他永远都只能停留在想,
+<br/> 
+走不出第一步
+</b>
+
+
+<!--定义了一个按钮，设置了点击事件 和 背景颜色-->
+<br/><br/><br/>
+<button onclick = "forFun1()" style="background-color:palegoldenrod"> 不想做这样的傻逼</button>
+
+
+<!--一个文本框，用来输出提示信息，并且设置了点击事件-->
+<br/><br/><br/>
+<input onclick = "forFun7()" type="text" id="field" value="    你猜你的评价是什么">
+
+<!--定义了一个链接，连接到上面的文本框，设置了点击事件-->
+<br/><br/><br/>
+<a onclick = "forFun2()" id="linked" href = "#field">开始走出第一步 . . .</a>
+<br/><br/>
+
+
+</big>
 </p>
-<p>
-Standing on the River Thames, London has been a major settlement for two millennia,
-its history going back to its founding by the Romans, who named it Londinium.
-</p>
-</div>
-
-<div id="footer">
-Copyright ? W3Schools.com
-</div>
 
 </body>
 </html>
