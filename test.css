@@ -65,8 +65,8 @@
 	width: 100%;height: 790px;z-index: 2;position:absolute;top: 0px; background-color: rgba(150,150,150,0.3);visibility:hidden;
 }
 .addPanel{
-	width: 35%;height: 430px;margin: 0 auto;background-color: #f0ece9;margin-top: 10%;line-height: 35px;
-	padding-left: 3%;padding-top: 2%;word-spacing: 80px;
+	width: 32%;height: 430px;margin: 0 auto;background-color: #f0ece9;margin-top: 10%;line-height: 35px;
+	padding-left: 13%;padding-top: 2%;word-spacing: 80px;
 }
 .seeTop{
 	height: 60px;background-color: #333333;
