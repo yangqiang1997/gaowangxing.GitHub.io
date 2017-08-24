@@ -40,6 +40,9 @@
 .divLine{
 	height: 43px;line-height: 40px; font-size: 15px;padding-left: 35px;word-spacing: 75px;background-color: #eef1f8;
 }
+.LineBox{
+	height: 430px;
+}
 .divLine2{
 	height: 43px;line-height: 40px; font-size: 15px;padding-left: 35px;word-spacing: 75px;background-color: white;
 }
@@ -50,7 +53,7 @@
 	cursor:pointer;
 }
 .buttom{
-	height: 100px;padding-left: 10%;line-height: 80px;padding-right: 10%;
+	height: 100px;padding-left: 10%;line-height: 80px;padding-right: 10%;float: top;
 }
 .button3{
 	background-color: #5cb85c;float:right;margin-right: 30px;position: relative;top: 30px;
@@ -62,8 +65,8 @@
 	width: 100%;height: 790px;z-index: 2;position:absolute;top: 0px; background-color: rgba(150,150,150,0.3);visibility:hidden;
 }
 .addPanel{
-	width: 26%;height: 430px;margin: 0 auto;background-color: #f0ece9;margin-top: 15%;line-height: 35px;
-	padding-left: 9%;padding-top: 2%;word-spacing: 80px;
+	width: 32%;height: 430px;margin: 0 auto;background-color: #f0ece9;margin-top: 10%;line-height: 35px;
+	padding-left: 13%;padding-top: 2%;word-spacing: 80px;
 }
 .seeTop{
 	height: 60px;background-color: #333333;
