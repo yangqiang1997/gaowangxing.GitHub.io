@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -7,39 +7,17 @@
 	<link rel="stylesheet" type="text/css" href="test.css">
 
 	<script type="text/javascript" src="test.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
 
 	<script type="text/javascript">
 		var num = 0;
 		var allStudent = 0;
-		var students =new Array();
 		var ten = 0;
 		var current = 0;
-		var parameter =new Array();
 		var backModifyIndex;
+		var parameter =new Array();
+		var students =new Array();
 		var ids = new Array("0","1","2","3","4","5","6","7","8","9");
-
-		for(var i=0 ; i < 10 ; i++){
-			parameter[i] = i;
-		}
-
-		students[0] = new student("11603080423","杨强","计算机学院","软件工程","2016","4","19");
-		students[1] = new student("11603080411","王桐","计算机学院","软件工程","2016","4","19");
-		students[2] = new student("11603080412","王源栋","计算机学院","软件工程","2016","4","19");
-		students[3] = new student("11603080412","胡倩","计算机学院","软件工程","2016","4","19");
-		students[4] = new student("11603080414","王国瑜","计算机学院","软件工程","2016","4","19");
-		students[5] = new student("11603080415","周流飞","计算机学院","软件工程","2016","4","19");
-		students[6] = new student("11603080416","高王星","计算机学院","软件工程","2016","4","19");
-		students[7] = new student("11603080417","康海燕","计算机学院","软件工程","2016","4","19");
-		students[8] = new student("11603080418","冉彗","计算机学院","软件工程","2016","4","19");
-		students[9] = new student("11603080419","胡浩天","计算机学院","软件工程","2016","4","19");
-		students[10] = new student("11603080420","程若兰","计算机学院","软件工程","2016","4","19");
-		students[11] = new student("11603080421","杨坚强","计算机学院","软件工程","2016","4","19");
-		students[12] = new student("11603080444","孙金","计算机学院","软件工程","2016","4","19");
-		students[13] = new student("11603080445","魏吉","计算机学院","软件工程","2016","4","19");
-		students[14] = new student("11603080446","流氓","计算机学院","软件工程","2016","4","19");
-
-		
-
 	</script>
 
 	<style type="text/css">
@@ -56,7 +34,6 @@
 
 </head>
 <body>
-
 
 <div class="see" id="see">
 	
@@ -132,7 +109,7 @@
 			</span>
 		</div>
 
-		<div id="content"></div>
+		<div id="content" class="LineBox"></div>
 	</div>
 
 	<div class="buttom">
@@ -145,7 +122,9 @@
 </div>
 
 <script type="text/javascript">
+		Initialization();
 		Rwrite();
 </script>
+
 </body>
 </html>
