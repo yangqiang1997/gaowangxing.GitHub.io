@@ -62,7 +62,9 @@ function setCheckbox(index){
 **/
 
 function see(index){
-		document.getElementById("see").style.visibility = "visible";
+		$(document).ready(function(){
+   			$("#see").show(1000);
+		});
 		document.getElementById("see2").value = students[index + ten].studentID;
 		document.getElementById("see3").value = students[index + ten].name;
 		document.getElementById("see4").value = students[index + ten].college;
@@ -72,7 +74,9 @@ function see(index){
 		document.getElementById("see8").value = students[index + ten].age;
 }
 function backFromSee(){
-		document.getElementById("see").style.visibility = "hidden";
+		$(document).ready(function(){
+   			$("#see").hide(1000);
+		});
 }
 
 
@@ -82,7 +86,9 @@ function backFromSee(){
 **/
 
 function modify(index){
-		document.getElementById("modify").style.visibility = "visible";
+		$(document).ready(function(){
+   			$("#modify").show(1000);
+		});
 		document.getElementById("modify2").value = students[index + ten].studentID;
 		document.getElementById("modify3").value = students[index + ten].name;
 		document.getElementById("modify4").value = students[index + ten].college;
@@ -91,10 +97,12 @@ function modify(index){
 		document.getElementById("modify7").value = students[index + ten].classes;
 		document.getElementById("modify8").value = students[index + ten].age;
 
-		backModifyIndex = index;
+		backModifyIndex = index + ten;
 }
 function backFromModify(){
-		document.getElementById("modify").style.visibility = "hidden";
+		$(document).ready(function(){
+   			$("#modify").hide(1000);
+		});
 }
 
 function sureFromModify(){
@@ -118,7 +126,9 @@ function sureFromModify(){
 		students[index].age = age;
 
 	
-		document.getElementById("modify").style.visibility = "hidden";
+		$(document).ready(function(){
+   			$("#modify").hide(1000);
+		});
 
 		ten = 0;
 		Rwrite();
@@ -184,7 +194,7 @@ function testModify(){
 /**
 *检验修改学号是否重复
 **/
-function Repetition(str , index){
+function Repetition(str){
 
 	for(var i = 0 ; i < allStudent ; i++){
 		if(students[i].studentID == str && i != backModifyIndex)
@@ -218,8 +228,9 @@ function deleteLine(){
 	var n = allStudent;
 	var NO = 0;
 	allStudent = 0;
-	ten = 0 ;
-
+	
+	var str = new String;
+	var tem = 0;
 
 	for(var i = 0 ; i < n ; i++){
 		if(students[i].remove == false){
@@ -227,6 +238,8 @@ function deleteLine(){
 			NO++;
 		}
 	}
+
+	ten = 0 ;
 	Rwrite();
    }
 }
@@ -238,18 +251,23 @@ function deleteLine(){
 **/
 
 function addLine(){
-	document.getElementById("add").style.visibility = "visible";
+
+	$(document).ready(function(){
+   		$("#add").show(1000);
+	});
 }
 
 function backFromAdd(){
-	document.getElementById("add").style.visibility = "hidden";
+	$(document).ready(function(){
+   		$("#add").hide(1000);
+	});
+	recoverAdd();
 }
 
 function sureFromAdd(){
 
 	if(testAdd() == null){
 
-		var index = allStudent;
 		var studentID = document.getElementById("add2").value;
 		var name = document.getElementById("add3").value;
 		var college = document.getElementById("add4").value;
@@ -257,11 +275,19 @@ function sureFromAdd(){
 		var grade = document.getElementById("add6").value;
 		var classes = document.getElementById("add7").value;
 		var age = document.getElementById("add8").value;
+	    var n = allStudent;
 
-		students[index] = new student(studentID,name,college,major,grade,classes,age);
+	    allStudent = 0;
+		for(var i = n ; i > 0 ; i--){
+			students[i] = new student(students[i-1].studentID , students[i-1].name , students[i-1].college , students[i-1].major , students[i-1].grade , students[i-1].classes , students[i-1].age);
+		}
+		students[0] = new student(studentID,name,college,major,grade,classes,age);
+		ten = 0 ;
 		Rwrite();
 
-   	 	document.getElementById("add").style.visibility = "hidden";
+   	 	$(document).ready(function(){
+   			$("#add").hide(1000);
+		});
    	 	recoverAdd();
 	}
 	else
@@ -338,41 +364,45 @@ function testAdd(){
 
 
 function Rwrite(){
+
 	var i;
 	var index = ten + 10;
 	var string = new String;
 	var temp = new String;
 	var temp2 = new String;
+	var temp3 = new String;
 	var div = document.getElementById("content");
 
-
-
+	$(document).ready(function(){
+    		$("#d1").hide(200);$("#d6").hide(200);
+    		$("#d2").hide(200);$("#d7").hide(200);
+    		$("#d3").hide(200);$("#d8").hide(200);
+    		$("#d4").hide(200);$("#d9").hide(200);
+    		$("#d5").hide(200);$("#d10").hide(200);
+	 });
 
 	for(i = ten; i < index && i < allStudent; i++){
 
-		if(num % 2 == 1)
-			string += "<div id='div' class='divLine'>";
-		else
-			string += "<div id='div' class='divLine2'>";
-
+		var test = i + 1;
 		switch(i - ten){
-			case 0:temp = "(0)'>";temp2="'0'";break;
-			case 1:temp = "(1)'>";temp2="'1'";break;
-			case 2:temp = "(2)'>";temp2="'2'";break;
-			case 3:temp = "(3)'>";temp2="'3'";break;
-			case 4:temp = "(4)'>";temp2="'4'";break;
-			case 5:temp = "(5)'>";temp2="'5'";break;
-			case 6:temp = "(6)'>";temp2="'6'";break;
-			case 7:temp = "(7)'>";temp2="'7'";break;
-			case 8:temp = "(8)'>";temp2="'8'";break;
-			case 9:temp = "(9)'>";temp2="'9'";break;
+			case 0:temp = "(0)'>";temp2="'0'";temp3="'d1'";break;
+			case 1:temp = "(1)'>";temp2="'1'";temp3="'d2'";break;
+			case 2:temp = "(2)'>";temp2="'2'";temp3="'d3'";break;
+			case 3:temp = "(3)'>";temp2="'3'";temp3="'d4'";break;
+			case 4:temp = "(4)'>";temp2="'4'";temp3="'d5'";break;
+			case 5:temp = "(5)'>";temp2="'5'";temp3="'d6'";break;
+			case 6:temp = "(6)'>";temp2="'6'";temp3="'d7'";break;
+			case 7:temp = "(7)'>";temp2="'7'";temp3="'d8'";break;
+			case 8:temp = "(8)'>";temp2="'8'";temp3="'d9'";break;
+			case 9:temp = "(9)'>";temp2="'9'";temp3="'d10'";break;
 		}
+		if(num % 2 == 1)
+			string += "<div id=" + temp3 + " class='divLine'>";
+		else
+			string += "<div id=" + temp3 + " class='divLine2'>";
 
-		string += "<input name='input' id="
-		string += temp2 + "  type='checkbox' onclick='setCheckbox";
-		string += temp;
-
-		string +="<span class='psoition1'>" + students[i].serial + "</span>";
+		string += "<input name='input' id=" + temp2 + "  type='checkbox' onclick='setCheckbox" + temp;
+		string +="<span class='psoition1'>" + test + "</span>";
 		string +="<span class='psoition2'>" + students[i].studentID + "</span>";
 		string +="<span class='psoition3'>" + students[i].name + "</span>";
 		string +="<span class='psoition4'>" + students[i].college + "</span>";
@@ -380,15 +410,8 @@ function Rwrite(){
 		string +="<span class='psoition6'>" + students[i].grade + "</span>";
 		string +="<span class='psoition7'>" + students[i].classes + "</span>";
 		string +="<span class='psoition8'>" + students[i].classes + "</span>";
-
-		string += "<span class='span' onclick='modify"
-		string += temp;
-		string += " 修改 </span>";
-
-		string += "<span class='span' onclick='see"
-		string += temp;
-		string += " 查看 </span>";
-	
+		string += "<span class='span' onclick='modify" + temp + " 修改 </span>";
+		string += "<span class='span' onclick='see"  + temp + " 查看 </span>";
 		string += "</div>";
 
 		num = num + 1;
@@ -397,6 +420,13 @@ function Rwrite(){
 	div.innerHTML = string;
 	num = 0;
 
+	$(document).ready(function(){
+    		$("#d1").show(1000);$("#d6").show(1000);
+    		$("#d2").show(1000);$("#d7").show(1000);
+    		$("#d3").show(1000);$("#d8").show(1000);
+    		$("#d4").show(1000);$("#d9").show(1000);
+    		$("#d5").show(1000);$("#d10").show(1000);
+	 });
 
 	var order = ten / 10 + 1;
 	var chars = "第" + order + "页,共" + allStudent + "条(每页显示10条)"
@@ -407,23 +437,63 @@ function Rwrite(){
 
 function nextPage(){
 
-	for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
+	if(ten + 11 < allStudent){
+		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 				students[i].remove = false;
 		}
-
-	if(ten + 10 < allStudent)
 		ten += 10;
-	Rwrite();
+		Rwrite();
+	}
+	else{
+		alert("最后一页了哦。。。");
+	}
 
 }
 function beforPage(){
 
-	for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
+	if(ten - 10 >= 0){
+		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 				students[i].remove = false;
 		}
-
-	if(ten - 10 >= 0)
 		ten -= 10;
-	Rwrite();
+		Rwrite();
+	}
+	else{
+		alert("已经是第一页了哦。。。")
+	}
+
+}
+function Initialization(){
+
+		for(var i=0 ; i < 10 ; i++){
+			parameter[i] = i;
+		}
+
+		$(document).ready(function(){
+			$("#add").hide();
+			$("#see").hide();
+			$("#modify").hide();
+
+
+			document.getElementById("add").style.visibility = "visible";
+			document.getElementById("see").style.visibility = "visible";
+			document.getElementById("modify").style.visibility = "visible";
+		});
+
+		students[0] = new student("11603080423","杨强","计算机学院","软件工程","2016","4","19");
+		students[1] = new student("11603080411","王桐","计算机学院","软件工程","2016","4","19");
+		students[2] = new student("11603080233","王源栋","计算机学院","软件工程","2016","4","19");
+		students[3] = new student("11603080412","胡倩","计算机学院","软件工程","2016","4","19");
+		students[4] = new student("11603080414","王国瑜","计算机学院","软件工程","2016","4","19");
+		students[5] = new student("11603080415","周流飞","计算机学院","软件工程","2016","4","19");
+		students[6] = new student("11603080416","高王星","计算机学院","软件工程","2016","4","19");
+		students[7] = new student("11603080417","康海燕","计算机学院","软件工程","2016","4","19");
+		students[8] = new student("11603080418","冉彗","计算机学院","软件工程","2016","4","19");
+		students[9] = new student("11603080419","胡浩天","计算机学院","软件工程","2016","4","19");
+		students[10] = new student("11603080420","程若兰","计算机学院","软件工程","2016","4","19");
+		students[11] = new student("11603080421","杨坚强","计算机学院","软件工程","2016","4","19");
+		students[12] = new student("11603080444","孙金","计算机学院","软件工程","2016","4","19");
+		students[13] = new student("11603080445","魏吉","计算机学院","软件工程","2016","4","19");
+		students[14] = new student("11603080446","流氓","计算机学院","软件工程","2016","4","19");
 
 }
