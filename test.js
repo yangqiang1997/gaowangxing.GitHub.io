@@ -63,7 +63,7 @@ function setCheckbox(index){
 
 function see(index){
 		$(document).ready(function(){
-   			$("#see").show(1000);
+   			$("#see").fadeIn(1000);
 		});
 		document.getElementById("see2").value = students[index + ten].studentID;
 		document.getElementById("see3").value = students[index + ten].name;
@@ -224,9 +224,19 @@ function testRepetition(str){
 
 function deleteLine(){
 
-	if(confirm("真的要删除吗？") == true){
 	var n = allStudent;
 	var NO = 0;
+	var rem = false;
+
+	for(var i = 0 ; i < n ; i++){
+		if(students[i].remove == true)
+			rem = true;
+	}
+
+	if(rem == false)
+		alert("没有选中删除的哦 。。。");
+	else if(confirm("真的要删除吗？") == true){
+
 	allStudent = 0;
 	
 	var str = new String;
@@ -239,7 +249,9 @@ function deleteLine(){
 		}
 	}
 
-	ten = 0 ;
+	if(ten == allStudent && ten!=0){
+		ten -= 10;
+	}
 	Rwrite();
    }
 }
@@ -374,11 +386,11 @@ function Rwrite(){
 	var div = document.getElementById("content");
 
 	$(document).ready(function(){
-    		$("#d1").hide(200);$("#d6").hide(200);
-    		$("#d2").hide(200);$("#d7").hide(200);
-    		$("#d3").hide(200);$("#d8").hide(200);
-    		$("#d4").hide(200);$("#d9").hide(200);
-    		$("#d5").hide(200);$("#d10").hide(200);
+    		$("#d1").hide();$("#d6").hide();
+    		$("#d2").hide();$("#d7").hide();
+    		$("#d3").hide();$("#d8").hide();
+    		$("#d4").hide();$("#d9").hide();
+    		$("#d5").hide();$("#d10").hide();
 	 });
 
 	for(i = ten; i < index && i < allStudent; i++){
@@ -419,6 +431,7 @@ function Rwrite(){
 
 	div.innerHTML = string;
 	num = 0;
+	document.getElementById("check").checked = false;
 
 	$(document).ready(function(){
     		$("#d1").show(1000);$("#d6").show(1000);
@@ -437,7 +450,9 @@ function Rwrite(){
 
 function nextPage(){
 
-	if(ten + 11 < allStudent){
+	if(ten + 10 < allStudent){
+   		$("#span").slideToggle(1500);
+   		$("#span").fadeIn(1000);
 		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 				students[i].remove = false;
 		}
@@ -452,6 +467,8 @@ function nextPage(){
 function beforPage(){
 
 	if(ten - 10 >= 0){
+		$("#span").slideToggle(1500);
+   		$("#span").fadeIn(1000);
 		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 				students[i].remove = false;
 		}
@@ -473,11 +490,15 @@ function Initialization(){
 			$("#add").hide();
 			$("#see").hide();
 			$("#modify").hide();
-
-
 			document.getElementById("add").style.visibility = "visible";
 			document.getElementById("see").style.visibility = "visible";
 			document.getElementById("modify").style.visibility = "visible";
+
+			$("#main").animate({opacity:'0.15',height:'400px', width:'50%',});
+			$("#main").animate({opacity:'0.45',height:'510px', width:'65%',});
+			$("#main").animate({opacity:'0.45',height:'620px', width:'80%',});
+			$("#main").animate({opacity:'0.75',height:'750px', width:'95%',});
+			$("#main").animate({opacity:'1',height:'890px', width:'100%',});
 		});
 
 		students[0] = new student("11603080423","杨强","计算机学院","软件工程","2016","4","19");
