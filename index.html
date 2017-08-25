@@ -37,7 +37,7 @@
 
 <div class="see" id="see">
 	
-	<div class="addPanel">
+	<div class="addPanel back_3">
 
 		<span><br/>学号 <input type="textarea" id="see2" class="input" disabled="true"></span>
 		<span><br/>姓名 <input type="textarea" id="see3" class="input" disabled="true"></span>
@@ -47,12 +47,12 @@
 		<span><br/>班级 <input type="textarea" id="see7" class="input" disabled="true"></span>
 		<span><br/>年龄 <input type="textarea" id="see8" class="input" disabled="true"><br/><br/></span>
 
-		<button class="button button5" onclick="backFromSee()">返回</button>
+		<button class="button button5" onclick="backFromSee()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='black'">返回</button>
 	</div>
 </div>
 
 <div class="modify" id="modify">
-	<div class="addPanel">
+	<div class="addPanel back_2">
 		<span><br/>学号 <input type="textarea" id="modify2" class="input3"></span>
 		<span><br/>姓名 <input type="textarea" id="modify3" class="input3"></span>
 		<span><br/>学院 <input type="textarea" id="modify4" class="input3"></span>
@@ -61,13 +61,13 @@
 		<span><br/>班级 <input type="textarea" id="modify7" class="input3"></span>
 		<span><br/>年龄 <input type="textarea" id="modify8" class="input3"><br/><br/></span>
 
-		<button class="button6 button" onclick="sureFromModify()">保存</button>
-		<button class="button7 button" onclick="backFromModify()">返回</button>
+		<button class="button6 button" onclick="sureFromModify()" onmouseover="style.background='pink'" onmouseout="style.background='black'">保存</button>
+		<button class="button7 button" onclick="backFromModify()" onmouseover="style.background='green'" onmouseout="style.background='#5cb85c'">返回</button>
 	</div>
 </div>
 
 <div class="add" id="add">
-	<div class="addPanel">
+	<div class="addPanel back_1">
 		<span><br/>学号 <input type="textarea" id="add2" class="input2"></span>
 		<span><br/>姓名 <input type="textarea" id="add3" class="input2"></span>
 		<span><br/>学院 <input type="textarea" id="add4" class="input2"></span>
@@ -76,12 +76,12 @@
 		<span><br/>班级 <input type="textarea" id="add7" class="input2"></span>
 		<span><br/>年龄 <input type="textarea" id="add8" class="input2"><br/><br/></span>
 
-		<button class="button6 button" onclick="sureFromAdd()">确定</button>
-		<button class="button7 button" onclick="backFromAdd()">返回</button>
+		<button class="button6 button" onclick="sureFromAdd()" onmouseover="style.background='pink'" onmouseout="style.background='black'">确定</button>
+		<button class="button7 button" onclick="backFromAdd()" onmouseover="style.background='green'" onmouseout="style.background='#5cb85c'">返回</button>
 	</div>
 </div>
 
-<div class="allWidth back">
+<div class="allWidth back back_2" id="main">
 	
 	<!--第一层-->
 	<div class="top">
@@ -89,8 +89,8 @@
 	</div>
 
 	<div class="top_button">
-		<button class="button1 button" onclick="addLine()">新增</button>
-		<button class="button2 button" onclick="deleteLine()">删除</button>
+		<button class="button button1 " onclick="addLine()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='black'">新增</button>
+		<button class="button button2 " onclick="deleteLine()" onmouseover="style.background='#d9534f'" onmouseout="style.background='#48bbda'">删除</button>
 	</div>
 
 	<div class="center" id="center">
@@ -113,11 +113,11 @@
 	</div>
 
 	<div class="buttom">
-		<span id="span">
+		<span id="span" class="span_buttom">
 			第1页,共27条 (每页显示10条)
 		</span>
-		<button class="button4 button" onclick="nextPage()">下一页</button>
-		<button class="button3 button" onclick="beforPage()">上一页</button>
+		<button class=" button button4" onclick="nextPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">下一页</button>
+		<button class=" button button3" onclick="beforPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">上一页</button>
 	</div>
 </div>
 
