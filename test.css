@@ -149,17 +149,17 @@
 	position: absolute;left: 85%;
 }
 .back_1{
-	background:url(image/img1.jpg) no-repeat 0px 0px;
+	background:url(img1.jpg) no-repeat 0px 0px;
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
 .back_2{
-	background:url(image/img2.jpg);
+	background:url(img2.jpg);
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
 .back_3{
-	background:url(image/img3.jpg) no-repeat 0px 0px;
+	background:url(img3.jpg) no-repeat 0px 0px;
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
