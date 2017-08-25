@@ -8,7 +8,7 @@
 	font-size: 10px;
 }
 .back{
-	background-color: #f0ece9;
+	background-color: #f0ece9;opacity:0;
 }
 .allWidth{
 	width: 100%;z-index: 1;position: absolute;top: 0px;
@@ -23,10 +23,10 @@
 	color: white;border:2px #333333 solid;width: 90px;height: 35px;
 }
 .button1{
-	background-color: #5cb85c;
+	background-color: black;
 }
 .button2{
-	background-color: #d9534f;margin-left: 20px;
+	background-color: #48bbda;margin-left: 20px;
 }
 .center{
 	height: 500px;width: 80%;margin: 0 auto;background-color: white;
@@ -53,13 +53,13 @@
 	cursor:pointer;
 }
 .buttom{
-	height: 100px;padding-left: 10%;line-height: 80px;padding-right: 10%;float: top;
+	height: 200px;padding-left: 10%;line-height: 80px;padding-right: 10%;float: top;
 }
 .button3{
-	background-color: #5cb85c;float:right;margin-right: 30px;position: relative;top: 30px;
+	background-color: #daf5fc;float:right;margin-right: 30px;position: relative;top: 30px;color: black;
 }
 .button4{
-	background-color: #d9534f;float: right;position: relative;top: 30px;
+	background-color: #daf5fc;float: right;position: relative;top: 30px;color: black;
 }
 .add{
 	width: 100%;height: 790px;z-index: 2;position:absolute;top: 0px; background-color: rgba(150,150,150,0.3);visibility:hidden;
@@ -147,4 +147,22 @@
 }
 .top9{
 	position: absolute;left: 85%;
+}
+.back_1{
+	background:url(image/img1.jpg) no-repeat 0px 0px;
+	background-size:100% 100%;
+	background-attachment: fixed;
+}
+.back_2{
+	background:url(image/img2.jpg);
+	background-size:100% 100%;
+	background-attachment: fixed;
+}
+.back_3{
+	background:url(image/img3.jpg) no-repeat 0px 0px;
+	background-size:100% 100%;
+	background-attachment: fixed;
+}
+.span_buttom{
+	color: #332299;
 }
