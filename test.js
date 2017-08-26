@@ -26,6 +26,8 @@ function test(Test){
 **/
 function checkAll(){
 
+	if(ser != true){
+
 	var index = ten + 10;
 
 	if(document.getElementById("check").checked == true){
@@ -45,7 +47,7 @@ function checkAll(){
 		}
 	}
 	
-	
+	}
 }
 
 function setCheckbox(index){
@@ -130,7 +132,6 @@ function sureFromModify(){
    			$("#modify").hide(1000);
 		});
 
-		ten = 0;
 		Rwrite();
 
 	}
@@ -224,6 +225,8 @@ function testRepetition(str){
 
 function deleteLine(){
 
+	if(ser != true){
+
 	var n = allStudent;
 	var NO = 0;
 	var rem = false;
@@ -254,6 +257,7 @@ function deleteLine(){
 	}
 	Rwrite();
    }
+  }
 }
 
 
@@ -264,9 +268,11 @@ function deleteLine(){
 
 function addLine(){
 
-	$(document).ready(function(){
-   		$("#add").show(1000);
-	});
+	if(ser != true){
+		$(document).ready(function(){
+	   		$("#add").show(1000);
+		});
+	}
 }
 
 function backFromAdd(){
@@ -421,7 +427,7 @@ function Rwrite(){
 		string +="<span class='psoition5'>" + students[i].major + "</span>";
 		string +="<span class='psoition6'>" + students[i].grade + "</span>";
 		string +="<span class='psoition7'>" + students[i].classes + "</span>";
-		string +="<span class='psoition8'>" + students[i].classes + "</span>";
+		string +="<span class='psoition8'>" + students[i].age + "</span>";
 		string += "<span class='span' onclick='modify" + temp + " 修改 </span>";
 		string += "<span class='span' onclick='see"  + temp + " 查看 </span>";
 		string += "</div>";
@@ -444,42 +450,132 @@ function Rwrite(){
 	var order = ten / 10 + 1;
 	var chars = "第" + order + "页,共" + allStudent + "条(每页显示10条)"
 	document.getElementById("span").innerHTML = chars;
+	ser = false;
 }
 
 
 
 function nextPage(){
-
-	if(ten + 10 < allStudent){
-   		$("#span").slideToggle(1500);
-   		$("#span").fadeIn(1000);
-		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
-				students[i].remove = false;
+	if(ser != true){
+		if(ten + 10 < allStudent){
+   			$("#span").slideToggle(1300);
+   			$("#span").fadeIn(800);
+			for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
+					students[i].remove = false;
+			}
+			ten += 10;
+			Rwrite();
 		}
-		ten += 10;
-		Rwrite();
+		else{
+			alert("最后一页了哦。。。");
+		}
 	}
-	else{
-		alert("最后一页了哦。。。");
-	}
-
 }
+
 function beforPage(){
-
-	if(ten - 10 >= 0){
-		$("#span").slideToggle(1500);
-   		$("#span").fadeIn(1000);
-		for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
-				students[i].remove = false;
+	if(ser != true){
+		if(ten - 10 >= 0){
+			$("#span").slideToggle(1300);
+   			$("#span").fadeIn(800);
+			for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
+					students[i].remove = false;
+			}
+			ten -= 10;
+			Rwrite();
 		}
-		ten -= 10;
+		else{
+			alert("已经是第一页了哦。。。")
+		}
+	}
+}
+function lastPage(){
+	if(ser != true){
+		ten = allStudent - allStudent%10;
 		Rwrite();
 	}
-	else{
-		alert("已经是第一页了哦。。。")
+}
+function firstPage(){
+	if(ser != true){
+		ten = 0;
+		Rwrite();
+	}
+}
+
+function search(){
+
+	var serChar = document.getElementById("foundInput").value;
+
+	if(serChar.length != 0){
+	var search =new Array();
+	var string = new String;
+	var div = document.getElementById("content");
+
+	for(var i = 0; i < allStudent; i++){
+		if(students[i].studentID.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].name.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].college.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].major.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].grade.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].classes.match(serChar))
+			search[search.length] = students[i];
+		else if(students[i].age.match(serChar))
+			search[search.length] = students[i];
 	}
 
+	for(var i = 0; i < 10 && i < search.length ; i++){
+
+		var test = i + 1;
+
+		if(num % 2 == 1)
+			string += "<div  class='divLine'>";
+		else
+			string += "<div  class='divLine2'>";
+
+		string += "<input name='input' type='checkbox' >"
+		string +="<span class='psoition1'>" + test + "</span>";
+		string +="<span class='psoition2'>" + search[i].studentID + "</span>";
+		string +="<span class='psoition3'>" + search[i].name + "</span>";
+		string +="<span class='psoition4'>" + search[i].college + "</span>";
+		string +="<span class='psoition5'>" + search[i].major + "</span>";
+		string +="<span class='psoition6'>" + search[i].grade + "</span>";
+		string +="<span class='psoition7'>" + search[i].classes + "</span>";
+		string +="<span class='psoition8'>" + search[i].age + "</span>";
+		string += "</div>";
+
+		num = num + 1;
+	}
+
+	div.innerHTML = string;
+	num = 0;
+	document.getElementById("check").checked = false;
+
+	var chars = "将显示最新搜索到的十位学生"
+	document.getElementById("span").innerHTML = chars;
+
+	ser = true;
+
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function Initialization(){
 
 		for(var i=0 ; i < 10 ; i++){
