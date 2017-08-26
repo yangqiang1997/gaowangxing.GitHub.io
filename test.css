@@ -95,7 +95,12 @@
 .button7{
 	background-color: #5cb85c;margin-right: 10%;width: 130px;
 }
-
+.button8{
+	background-color: #daf5fc;float: right;position: relative;top: 30px;color: black;margin-right: 100px;
+}
+.button9{
+	background-color: #daf5fc;float: right;position: relative;top: 30px;color: black;margin-right: 2%;
+}
 .psoition1{
 	position: absolute;left: 17%;
 }
@@ -149,20 +154,26 @@
 	position: absolute;left: 85%;
 }
 .back_1{
-	background:url(img1.jpg) no-repeat 0px 0px;
+	background:url(image/img1.jpg) no-repeat 0px 0px;
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
 .back_2{
-	background:url(img2.jpg);
+	background:url(image/img2.jpg);
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
 .back_3{
-	background:url(img3.jpg) no-repeat 0px 0px;
+	background:url(image/img3.jpg) no-repeat 0px 0px;
 	background-size:100% 100%;
 	background-attachment: fixed;
 }
 .span_buttom{
 	color: #332299;
+}
+.check{
+	width: 18px;height: 18px;color: red;background-color: green;
+}
+.foundInput{
+	width: 13%;height: 30px;font-size: 20px;color: green;float: right;margin-right: 30px;margin-top: 30px;
 }
