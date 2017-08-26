@@ -17,6 +17,7 @@
 		var backModifyIndex;
 		var parameter =new Array();
 		var students =new Array();
+		var ser = false;
 		var ids = new Array("0","1","2","3","4","5","6","7","8","9");
 	</script>
 
@@ -37,7 +38,7 @@
 
 <div class="see" id="see">
 	
-	<div class="addPanel back_3">
+	<div class="addPanel back_1">
 
 		<span><br/>学号 <input type="textarea" id="see2" class="input" disabled="true"></span>
 		<span><br/>姓名 <input type="textarea" id="see3" class="input" disabled="true"></span>
@@ -67,7 +68,7 @@
 </div>
 
 <div class="add" id="add">
-	<div class="addPanel back_1">
+	<div class="addPanel back_3">
 		<span><br/>学号 <input type="textarea" id="add2" class="input2"></span>
 		<span><br/>姓名 <input type="textarea" id="add3" class="input2"></span>
 		<span><br/>学院 <input type="textarea" id="add4" class="input2"></span>
@@ -96,7 +97,7 @@
 	<div class="center" id="center">
 		<div class="center_top">
 			<span>
-				<input  id="check" type="checkbox" onClick="checkAll()">
+				<input  id="check" type="checkbox" class="check" onClick="checkAll()">
 				<span class="top1">序号</span>
 				<span class="top2">学号</span>
 				<span class="top3">姓名</span>
@@ -116,8 +117,20 @@
 		<span id="span" class="span_buttom">
 			第1页,共27条 (每页显示10条)
 		</span>
-		<button class=" button button4" onclick="nextPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">下一页</button>
+
+		
+		
+		<button class=" button button4" onclick="lastPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">尾页</button>
+
+		<button class=" button button9" onclick="nextPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">下一页</button>
 		<button class=" button button3" onclick="beforPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">上一页</button>
+
+		<button class=" button button9" onclick="firstPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">首页</button>
+
+		<button class=" button button8" onclick="Rwrite()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">恢复</button>
+		<button class=" button button9" onclick="search()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">检索</button>
+
+		<input type="text" id="foundInput" class="foundInput">
 	</div>
 </div>
 
