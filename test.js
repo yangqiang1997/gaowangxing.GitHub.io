@@ -11,9 +11,7 @@ function student(studentID,name,college,major,grade,classes,age)
 	this.classes = classes;
 	this.age = age;
 	this.remove = false;
-
 	allStudent++;
-	this.serial = allStudent;
 }
 
 function test(Test){
@@ -65,7 +63,7 @@ function setCheckbox(index){
 
 function see(index){
 		$(document).ready(function(){
-   			$("#see").fadeIn(1000);
+   			$("#see").fadeIn(1500);
 		});
 		document.getElementById("see2").value = students[index + ten].studentID;
 		document.getElementById("see3").value = students[index + ten].name;
@@ -458,7 +456,7 @@ function Rwrite(){
 function nextPage(){
 	if(ser != true){
 		if(ten + 10 < allStudent){
-   			$("#span").slideToggle(1300);
+   			$("#span").slideToggle(800);
    			$("#span").fadeIn(800);
 			for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 					students[i].remove = false;
@@ -475,7 +473,7 @@ function nextPage(){
 function beforPage(){
 	if(ser != true){
 		if(ten - 10 >= 0){
-			$("#span").slideToggle(1300);
+			$("#span").slideToggle(800);
    			$("#span").fadeIn(800);
 			for (var i = ten ; i < ten+10 && i < allStudent ; i++) {
 					students[i].remove = false;
@@ -490,12 +488,16 @@ function beforPage(){
 }
 function lastPage(){
 	if(ser != true){
+		$("#span").slideToggle(800);
+   		$("#span").fadeIn(800);
 		ten = allStudent - allStudent%10;
 		Rwrite();
 	}
 }
 function firstPage(){
 	if(ser != true){
+		$("#span").slideToggle(800);
+   		$("#span").fadeIn(800);
 		ten = 0;
 		Rwrite();
 	}
@@ -506,6 +508,7 @@ function search(){
 	var serChar = document.getElementById("foundInput").value;
 
 	if(serChar.length != 0){
+	$("#content").hide();
 	var search =new Array();
 	var string = new String;
 	var div = document.getElementById("content");
@@ -553,29 +556,16 @@ function search(){
 	div.innerHTML = string;
 	num = 0;
 	document.getElementById("check").checked = false;
-
+	$("#span").slideToggle(10);
+   	$("#span").fadeIn(800);
 	var chars = "将显示最新搜索到的十位学生"
 	document.getElementById("span").innerHTML = chars;
 
+	$("#content").fadeIn(2000);
 	ser = true;
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function Initialization(){
 
 		for(var i=0 ; i < 10 ; i++){
@@ -611,6 +601,15 @@ function Initialization(){
 		students[11] = new student("11603080421","杨坚强","计算机学院","软件工程","2016","4","19");
 		students[12] = new student("11603080444","孙金","计算机学院","软件工程","2016","4","19");
 		students[13] = new student("11603080445","魏吉","计算机学院","软件工程","2016","4","19");
-		students[14] = new student("11603080446","流氓","计算机学院","软件工程","2016","4","19");
-
+		students[14] = new student("11603080446","李波","计算机学院","软件工程","2016","4","19");
+		students[15] = new student("11556080411","黄晶","计算机学院","软件工程","2016","4","19");
+		students[16] = new student("11556080412","杨曦","计算机学院","软件工程","2016","4","19");
+		students[17] = new student("11556080413","秦广达","计算机学院","软件工程","2016","4","19");
+		students[18] = new student("11556080414","林强","计算机学院","软件工程","2016","4","19");
+		students[19] = new student("11556080415","范婷婷","计算机学院","软件工程","2016","4","19");
+		students[20] = new student("11556080416","郑硕","计算机学院","软件工程","2016","4","19");
+		students[21] = new student("11556080417","李瑜星","计算机学院","软件工程","2016","4","19");
+		students[22] = new student("11556080441","杜豪","计算机学院","软件工程","2016","4","19");
+		students[23] = new student("11556080418","张松","计算机学院","软件工程","2016","4","19");
+		students[24] = new student("11556080419","郑云","计算机学院","软件工程","2016","4","19");
 }
