@@ -1,0 +1,100 @@
+.body{
+	background: url(Boke_img1.jpg) 100% 100% no-repeat ;
+	background-size:100% 100%;
+	background-attachment: fixed;
+}
+.login{
+	width: 40px;
+	height: 40px;
+	background-color: cyan;
+	position:fixed;
+	margin-top: 25%;
+	border:3px solid lightgreen;
+	border-radius: 15px;
+	color: plum;
+	line-height: 40px;
+	padding: 10px;
+}
+.login:hover{
+	cursor:pointer;
+	color: white;
+	background-color:purple;
+}
+.button{
+	width: 100px;
+	height: 35px;
+	background-color:#CC00FF;
+	border: none;
+	margin-top: 100px;
+	margin-left: 7%;
+	color: white;
+	-webkit-transition:-webkit-transform 1s;
+}
+.b1{
+	background-color: blue;
+}
+.button:hover{
+	background-color:lightgreen;
+	cursor:pointer;
+	color: #333;
+	-webkit-transform:rotate(360deg);
+}
+.img{
+	width: 100px;
+	height: 100px;
+}
+.show{
+	width: 800px;
+	height: 550px;
+	background-color: pink;
+	margin-left: 20%;
+	background: url(Boke_img2.jpg) 100% 100% no-repeat ;
+	background-size:100% 100%;
+	background-attachment: fixed;
+	border-radius: 20px;
+	padding-left: 10%;
+	padding-top: 50px;
+	color: white;
+}
+.show:hover{
+	cursor:pointer;
+}
+
+
+
+.meta{
+	border-radius: 10px;
+	width:100px;
+	height:100px;
+	background:red;
+	position:relative;
+
+	animation:myfirst 7s linear 3s infinite alternate;
+}
+.meta:hover{
+	cursor:pointer;
+}
+
+/*@keyframes myfirst
+{
+0%   {background:red; left:0px; top:0px;}
+25%  {background:yellow; left:0; top:200px;}
+50%  {background:blue; left:200px; top:0px;}
+75%  {background:cyan; left:100px; top:100px;}
+100% {background:red; left:200px; top:200px;}
+}*/
+
+@keyframes myfirst
+{
+0%   {background:red; left:0px; top:0px;}
+11%  {background:yellow; left:0; top:200px;}
+22%  {background:blue; left:200px; top:0px;}
+33%  {background:cyan; left:100px; top:100px;}
+44% {background:red; left:200px; top:200px;}
+
+55%   {background:red; left:200px; top:0px;}
+66%  {background:yellow; left:200; top:200px;}
+77%  {background:blue; left:400px; top:0px;}
+88%  {background:cyan; left:300; top:100px;}
+100% {background:red; left:400px; top:200px;}
+}
