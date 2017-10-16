@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
+		<link rel="stylesheet" type="text/css" href="boke.css">
+		<script type="text/javascript" src="boke.js"></script>
+		<script type="text/javascript" src="jquery.js"></script>
+		<meta charset="utf-8">
 
-	<title>学生信息管理系统</title>
 
-	<link rel="stylesheet" type="text/css" href="test.css">
-
-	<script type="text/javascript" src="test.js"></script>
-	<script type="text/javascript" src="jquery.js"></script>
-
-	<script type="text/javascript">
-		var num = 0;
-		var allStudent = 0;
-		var ten = 0;
-		var current = 0;
-		var backModifyIndex;
-		var parameter =new Array();
-		var students =new Array();
-		var ser = false;
-		var ids = new Array("0","1","2","3","4","5","6","7","8","9");
-	</script>
-
-	<style type="text/css">
+		<style type="text/css">
 		body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
 		body{font:20px"微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
 		a{color:#2d374b;text-decoration:none} 
@@ -31,115 +17,44 @@
 		img{border:0;vertical-align:middle} 
 		table{border-collapse:collapse;border-spacing:0} 
 		p{word-wrap:break-word} 
-	</style>
+		</style>
 
-</head>
-<body>
+		<script type="text/javascript">
+			var clickNum = 0;
+		</script>
+	</head>
 
-<div class="see" id="see">
-	<div class="addPanelTop">查看学生</div>
-	<div class="addPanel back_1">
-
-		<span><br/>学号 <input type="textarea" id="see2" class="input" disabled="true"></span>
-		<span><br/>姓名 <input type="textarea" id="see3" class="input" disabled="true"></span>
-		<span><br/>学院 <input type="textarea" id="see4" class="input" disabled="true"></span>
-		<span><br/>专业 <input type="textarea" id="see5" class="input" disabled="true"></span>
-		<span><br/>年级 <input type="textarea" id="see6" class="input" disabled="true"></span>
-		<span><br/>班级 <input type="textarea" id="see7" class="input" disabled="true"></span>
-		<span><br/>年龄 <input type="textarea" id="see8" class="input" disabled="true"><br/><br/></span>
-
-		<button class="button button5" onclick="backFromSee()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='black'">返回</button>
-	</div>
-</div>
-
-<div class="modify" id="modify">
-	<div class="addPanelTop">修改学生</div>
-	<div class="addPanel back_2">
-		<span><br/>学号 <input type="textarea" id="modify2" class="input3"></span>
-		<span><br/>姓名 <input type="textarea" id="modify3" class="input3"></span>
-		<span><br/>学院 <input type="textarea" id="modify4" class="input3"></span>
-		<span><br/>专业 <input type="textarea" id="modify5" class="input3"></span>
-		<span><br/>年级 <input type="textarea" id="modify6" class="input3"></span>
-		<span><br/>班级 <input type="textarea" id="modify7" class="input3"></span>
-		<span><br/>年龄 <input type="textarea" id="modify8" class="input3"><br/><br/></span>
-
-		<button class="button6 button" onclick="sureFromModify()" onmouseover="style.background='pink'" onmouseout="style.background='black'">保存</button>
-		<button class="button7 button" onclick="backFromModify()" onmouseover="style.background='green'" onmouseout="style.background='#5cb85c'">返回</button>
-	</div>
-</div>
-
-<div class="add" id="add">
-	<div class="addPanelTop">增加学生</div>
-	<div class="addPanel back_3">
-		<span><br/>学号 <input type="textarea" id="add2" class="input2"></span>
-		<span><br/>姓名 <input type="textarea" id="add3" class="input2"></span>
-		<span><br/>学院 <input type="textarea" id="add4" class="input2"></span>
-		<span><br/>专业 <input type="textarea" id="add5" class="input2"></span>
-		<span><br/>年级 <input type="textarea" id="add6" class="input2"></span>
-		<span><br/>班级 <input type="textarea" id="add7" class="input2"></span>
-		<span><br/>年龄 <input type="textarea" id="add8" class="input2"><br/><br/></span>
-
-		<button class="button6 button" onclick="sureFromAdd()" onmouseover="style.background='pink'" onmouseout="style.background='black'">确定</button>
-		<button class="button7 button" onclick="backFromAdd()" onmouseover="style.background='green'" onmouseout="style.background='#5cb85c'">返回</button>
-	</div>
-</div>
-
-<div class="allWidth back back_2" id="main">
-	
-	<!--第一层-->
-	<div class="top">
-		<span class="font_999">学生信息管理系统</span>
-	</div>
-
-	<div class="top_button">
-		<button class="button button1 " onclick="addLine()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='black'">新增</button>
-		<button class="button button2 " onclick="deleteLine()" onmouseover="style.background='#d9534f'" onmouseout="style.background='#48bbda'">删除</button>
-	</div>
-
-	<div class="center" id="center">
-		<div class="center_top">
-			<span>
-				<input  id="check" type="checkbox" class="check" onClick="checkAll()">
-				<span class="top1">序号</span>
-				<span class="top2">学号</span>
-				<span class="top3">姓名</span>
-				<span class="top4">学院</span>
-				<span class="top5">专业</span>
-				<span class="top6">年级</span>
-				<span class="top7">班级</span>
-				<span class="top8">年龄</span>
-				<span class="top9">操作</span>
-			</span>
+	<body class="body">
+		<div id="login" class="login" onclick="login()">
+			进入
 		</div>
 
-		<div id="content" class="LineBox"></div>
-	</div>
+		<div class="meta" onclick="show()">
+			<img src="Boke_imgLogo.png" class="img">
+		</div>
 
-	<div class="buttom">
-		<span id="span" class="span_buttom">
-			第1页,共27条 (每页显示10条)
-		</span>
+		<div class="show" id="show" onclick="backShow()">
+			<b>致橡树</b></br></br>
+			如果我爱你 </br>
+			绝不像攀援的凌霄花,借你的高枝炫耀自己；</br>
+			我如果爱你—— 绝不学痴情的鸟儿, 为绿荫重复单调的歌曲； </br>
+			也不止像泉源, 常年送来清凉的慰籍； </br>
+			也不止像险峰, 增加你的高度, 衬托你的威仪. </br>
+			甚至日光. 甚至春雨.</br>
+			不,这些都还不够! </br>
+			我必须是你近旁的一株木棉, </br>
+			做为树的形象和你站在一起. </br>
+			根,紧握在地下, 叶,相触在云里. 每一阵风过,我们都互相致意, </br>
+			但没有人听懂我们的言语. </br>
+			你有你的铜枝铁干, 像刀,像剑,也像戟,我有我的红硕花朵, </br>
+			像沉重的叹息, 又像英勇的火炬,我们分担寒潮、风雷、霹雳； </br>
+			我们共享雾霭流岚、虹霓, 仿佛永远分离,却又终身相依,这才是伟大的爱情, </br>
+			坚贞就在这里： 不仅爱你伟岸的身躯,也爱你坚持的位置,脚下的土地.</br>
+		</div>
+	</body>
 
-		
-		
-		<button class=" button button4" onclick="lastPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">尾页</button>
+	<script type="text/javascript">
+		$("#show").hide(0);
+	</script>
 
-		<button class=" button button9" onclick="nextPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">下一页</button>
-		<button class=" button button3" onclick="beforPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">上一页</button>
-
-		<button class=" button button9" onclick="firstPage()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">首页</button>
-
-		<button class=" button button8" onclick="Rwrite()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">恢复</button>
-		<button class=" button button9" onclick="search()" onmouseover="style.background='#5cb85c'" onmouseout="style.background='#daf5fc'">检索</button>
-
-		<input type="text" id="foundInput" class="foundInput">
-	</div>
-</div>
-
-<script type="text/javascript">
-		Initialization();
-		Rwrite();
-</script>
-
-</body>
 </html>
