@@ -10,7 +10,7 @@ function login() {
 		var temp = "";
 
 		temp += "愿意留下大名吗? 有的名字才可访问内部网页哦...</br>"
-		temp += "<button class='button b1'>好的</button><button class='button'>不要，滚！</button>";
+		temp += "<button class='button b1'>好的</button><a href='boke1.html'><button class='button'>不要，滚！</button></a>";
 		document.getElementById('login').innerHTML = temp;
 
 	}
@@ -32,3 +32,4 @@ function show(){
 function backShow(){
 	$("#show").hide(1000);
 }
+
