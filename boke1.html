@@ -23,7 +23,7 @@
 		</script>
 	</head>
 
-	<body class="body" id="body">
+	<body class="boke1_body" id="boke1_body">
 
 		<div class="meta" onclick="show()">
 			<img src="Boke_imgLogo.png" class="img">
@@ -36,40 +36,47 @@
 		</a>
 
 		<div class="show" id="show" onclick="backShow()">
-			<b>致橡树</b></br></br>
-			如果我爱你 </br>
-			绝不像攀援的凌霄花,借你的高枝炫耀自己；</br>
-			我如果爱你—— 绝不学痴情的鸟儿, 为绿荫重复单调的歌曲； </br>
-			也不止像泉源, 常年送来清凉的慰籍； </br>
-			也不止像险峰, 增加你的高度, 衬托你的威仪. </br>
-			甚至日光. 甚至春雨.</br>
-			不,这些都还不够! </br>
-			我必须是你近旁的一株木棉, </br>
-			做为树的形象和你站在一起. </br>
-			根,紧握在地下, 叶,相触在云里. 每一阵风过,我们都互相致意, </br>
-			但没有人听懂我们的言语. </br>
-			你有你的铜枝铁干, 像刀,像剑,也像戟,我有我的红硕花朵, </br>
-			像沉重的叹息, 又像英勇的火炬,我们分担寒潮、风雷、霹雳； </br>
-			我们共享雾霭流岚、虹霓, 仿佛永远分离,却又终身相依,这才是伟大的爱情, </br>
-			坚贞就在这里： 不仅爱你伟岸的身躯,也爱你坚持的位置,脚下的土地.</br>
+			<b>采薇</b></br></br>
+			采薇采薇，薇亦作止。曰归曰归，岁亦莫止。</br>
+			靡室靡家，犭严狁之故。不遑启居，犭严狁之故。</br>
+
+			采薇采薇，薇亦柔止。曰归曰归，心亦忧止。</br>
+			忧心烈烈，载饥载渴。我戍未定，靡使归聘。</br>
+
+			采薇采薇，薇亦刚止。曰归曰归，岁亦阳止。</br>
+			王事靡盬，不遑启处。忧心孔疚，我行不来！</br>
+
+			彼尔维何？维常之华。彼路斯何？君子之车。</br>
+			戎车既驾，四牡业业。岂敢定居？一月三捷。</br>
+
+			驾彼四牡，四牡骙々。君子所依，小人所腓。</br>
+			四牡翼翼，象弭鱼服。岂不日戒？犭严狁孔棘！</br>
+
+			昔我往矣，杨柳依依。今我来思，雨雪霏霏。</br>
+			行道迟迟，载渴载饥。我心伤悲，莫知我哀！</br>
 		</div>
 	</body>
 
-	 <div id="content" class="content"></div>
+		<div id="boke1_promot" class="boke1_promot" onclick="boke1_showContent()">
+			哦？ 没看清 ？ 你是逗逼吗 ？
+		</div>
+		<div id="boke1_content" class="boke1_content" onclick="boke1_showContent()"></div>
 
 	<script type="text/javascript">
 		$("#show").hide(0);
-		$("#body").hide(0);
-		$("#body").show(2000);
+		$("#boke1_body").hide(0);
+		$("#boke1_body").show(2000);
+		$("#boke1_content").hide(0);
+		$("#boke1_content").show(2000);
+		$("#boke1_promot").hide(0);
 
-		var str = "杨强++重庆理工大学+计算机学院-软件工程系+爱好：书法、装逼+心里没有一点逼数+";
+		var str = "杨强++重庆理工大学+计算机学院-软件工程系+爱好：书法+心里没有一点逼数+";
 			str += "因为你也没办法收拾我 ！ + ╭(╯^╰)╮";
 
             var len=str.length;
             var i=0;
             var newString="";
             function showword(){
-               
 
                 if(str.charAt(i) == '+'){
                 	newString += "</br>";
@@ -78,14 +85,18 @@
                 	newString += str.charAt(i);
                 }
 
-                document.getElementById("content").innerHTML=newString;
+                document.getElementById("boke1_content").innerHTML=newString;
 
                 i++;
                 if(i>len){
+                	newString += "<div class='' id='boke1_content_1'></div>";
+                	document.getElementById("boke1_content").innerHTML=newString;
                 	clearInterval(done);
+                	boke1_firstDo();
                 }
             }
         var done = setInterval("showword()",100);
+
 	</script>
 
 </html>
