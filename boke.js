@@ -33,3 +33,12 @@ function backShow(){
 	$("#show").hide(1000);
 }
 
+
+function boke1_showContent(){
+	$("#boke1_content").slideToggle("slow");
+	$("#boke1_promot").slideToggle("slow");
+}
+function boke1_firstDo(){
+	document.getElementById("boke1_content_1").innerHTML = "<button class='boke1_button1'>想喷你个煞笔！</button>"
+						+"<button class='boke1_button1'>你该不会是个傻子吧？</button>";
+}
