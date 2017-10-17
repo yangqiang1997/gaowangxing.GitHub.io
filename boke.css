@@ -55,11 +55,42 @@
 	padding-left: 10%;
 	padding-top: 50px;
 	color: white;
+	z-index: 5;
 }
 .show:hover{
 	cursor:pointer;
 }
-
+.content{
+	z-index: 1;
+	color: white;
+	position: absolute;
+	top: 200px;
+	left: 500px;
+	font-family: KaiTi;
+	font-size: 28px;
+	line-height:40px;
+}
+.backToIndex{
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	position:absolute;
+	left: 80%;
+	top: 60%;
+	border:3px solid lightgreen;
+	border-radius: 5px;
+	color: plum;
+	line-height: 50px;
+	padding: 10px;
+	font-size: 23px;
+	-webkit-transition:-webkit-transform 1s;
+}
+.backToIndex:hover{
+	cursor:pointer;
+	color: white;
+	background-color:purple;
+	-webkit-transform:rotate(1080deg);
+}
 
 
 .meta{
@@ -68,7 +99,6 @@
 	height:100px;
 	background:red;
 	position:relative;
-
 	animation:myfirst 7s linear 3s infinite alternate;
 }
 .meta:hover{
@@ -90,11 +120,11 @@
 11%  {background:yellow; left:0; top:200px;}
 22%  {background:blue; left:200px; top:0px;}
 33%  {background:cyan; left:100px; top:100px;}
-44% {background:red; left:200px; top:200px;}
+44% {background:purple; left:200px; top:200px;}
 
-55%   {background:red; left:200px; top:0px;}
+55%   {background:lightgray; left:200px; top:0px;}
 66%  {background:yellow; left:200; top:200px;}
-77%  {background:blue; left:400px; top:0px;}
-88%  {background:cyan; left:300; top:100px;}
-100% {background:red; left:400px; top:200px;}
+77%  {background:lightgreen; left:400px; top:0px;}
+88%  {background:white; left:300; top:100px;}
+100% {background:pink; left:400px; top:200px;}
 }
