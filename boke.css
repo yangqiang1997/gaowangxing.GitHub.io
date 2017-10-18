@@ -79,11 +79,11 @@
 	width: 600px;
 	height: 40px;
 	border-radius: 5px;
-	background: url(Boke_img3.jpg) 100% 100% no-repeat ;
+	background-color: white;
 	background-size:100% 100%;
 	padding-left: 50px;
 	padding-top: 10px;
-	opacity:0.3;
+	opacity:0.2;
 }
 .boke1_promot:hover{
 	cursor:pointer;
