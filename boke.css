@@ -53,7 +53,7 @@
 	height: 100px;
 }
 .show{
-	width: 800px;
+	width: 45%;
 	height: 620px;
 	background-color: pink;
 	margin-left: 20%;
@@ -75,7 +75,7 @@
 	z-index: 1;
 	color: gray;
 	position: absolute;
-	top: 15%;
+	top: 14%;
 	left: 30%;
 	font-family: 宋体;
 	font-size: 28px;
