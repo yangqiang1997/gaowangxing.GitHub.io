@@ -39,6 +39,12 @@ function boke1_showContent(){
 	$("#boke1_promot").slideToggle("slow");
 }
 function boke1_firstDo(){
-	document.getElementById("boke1_content_1").innerHTML = "<button class='boke1_button1'>想喷你个煞笔！</button>"
-						+"<button class='boke1_button1'>你该不会是个傻子吧？</button>";
+	document.getElementById("boke1_content_1").innerHTML = "<button class='boke1_button1' onclick='boke1_showForm()'>想喷你个煞笔！</button>"
+						+"<button class='boke1_button1' onclick='say()'>你该不会是个傻子吧？</button>";
+}
+function boke1_showForm(){
+	$('#form').show(2000);
+}
+function boke1_hideForm(){
+	$('#form').hide(2000);
 }
