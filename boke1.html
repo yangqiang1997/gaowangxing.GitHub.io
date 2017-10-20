@@ -4,7 +4,7 @@
 		<script type="text/javascript" src="boke.js"></script>
 		<script type="text/javascript" src="jquery.js"></script>
 		<meta charset="utf-8">
-
+		<title>一个逗逼的分页I</title>
 
 		<style type="text/css">
 		body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
@@ -29,6 +29,17 @@
 			<img src="Boke_imgLogo.png" class="img">
 		</div>
 
+		<div class="boke1_ctxt">
+			<div id="" class="ctxt"  onclick="boke1_hideForm()"></div><br />
+			<div id="form" style="opacity:0.7;">
+				<form method="post" action="" align="center">  
+			    	<input type="text" id="msg" class="boke1_formInput" /> <button type="button" id="submitBut" class="boke1_formButton">发布</button>  
+				</form>
+			</div>
+		</div>
+		 
+		
+
 		
 
 		<div class="show" id="show" onclick="backShow()">
@@ -44,7 +55,8 @@
 			晓妆初过，沉檀轻注些儿个。</br>向人微露丁香颗，一曲清歌，暂引樱桃破。</br>
 			罗袖裛残殷色可，杯深旋被香醪涴。</br>绣床斜凭娇无那，烂嚼红茸，笑向檀郎唾。</br>
 		</div>
-	</body>
+	
+
 
 	<div class="boke1_page">
 		<div id="boke1_promot" class="boke1_promot" onclick="boke1_showContent()">
@@ -59,6 +71,8 @@
 		</a>
 	</div>
 
+	</body>
+
 	<script type="text/javascript">
 		$("#show").hide(0);
 		$("#boke1_body").hide(0);
@@ -66,6 +80,7 @@
 		$("#boke1_content").hide(0);
 		$("#boke1_content").show(2000);
 		$("#boke1_promot").hide(0);
+		$("#form").hide(0);
 
 		var str = "杨强++重庆理工大学+计算机学院-软件工程系+爱好：书法+心里没有一点逼数+";
 			str += "因为你也没办法收拾我 ！ + ╭(╯^╰)╮";
@@ -93,6 +108,70 @@
                 }
             }
         var done = setInterval("showword()",100);
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function(){  
+  
+	    	$("#submitBut").click(function(){  
+	        var msgtxt=$("#msg").val();  
+	        var colortxt = getReandomColor();  
+	        var topPos = generateMixed(3);  
+	        if (topPos > 300)  
+	        {  
+	            topPos = 30;  
+	        }  
+		        var newtxt = '<p style="top:'+topPos+'px; color:'+colortxt+'">'+$("#msg").val()+'</p>';  
+		        $(".ctxt").prepend(newtxt);  
+		        var addTextW = $(".ctxt").find("p").width();  
+		        $(".ctxt p").animate({left: '-'+addTextW+"px"}, Math.random()*20000+ 5000,function(){  
+	            $(this).hide();  
+	        	});  
+   			});
+  		}); 
+
+  		function say(){
+  			for(var i = 0 ; i < 30 ; i++){
+
+	  			var msgtxt='你才是是傻子！！！ ╭(╯^╰)╮';   
+		        var colortxt = getReandomColor();  
+		        var topPos = generateMixed(3);  
+		        if (topPos > 300)  
+		        {  
+		            topPos = 30;  
+		        }
+			        var newtxt = '<p style="top:'+topPos+'px; color:'+colortxt+'">'+msgtxt+'</p>';  
+			        $(".ctxt").prepend(newtxt);  
+			        var addTextW = $(".ctxt").find("p").width();  
+			        $(".ctxt p").animate({left: '-'+addTextW+"px"}, Math.random()*20000+ 5000,function(){  
+		            $(this).hide();  
+		        	});
+		        }
+   			}
+	//随机获取颜色值  
+	    function getReandomColor(){  
+	        return '#'+(function(h){  
+	        return new Array(7-h.length).join("0")+h  
+	        })((Math.random()*0x1000000<<0).toString(16))  
+	    }  
+  
+	//生成随机数据。n表示位数    
+	    var jschars = ['0','1','2','3','4','5','6','7','8','9'];    
+	    function generateMixed(n) {    
+	        var res = "";    
+	        for(var i = 0; i < n ; i ++) {    
+	            var id = Math.ceil(Math.random()*9);    
+	            res += jschars[id];    
+	        }    
+	        return res;    
+	    }
 
 	</script>
 
