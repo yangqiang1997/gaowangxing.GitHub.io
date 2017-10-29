@@ -48,3 +48,42 @@ function boke1_showForm(){
 function boke1_hideForm(){
 	$('#form').hide(2000);
 }
+
+
+
+
+function boke1_summary() {
+	if (clickNum % 2 == 0) {
+		$("#boke1_summary").animate({
+			left:'25%',
+		    opacity:'0.8',
+		    height:'220px',
+		    width:'40%',
+		    paddingLeft:'8%',
+		    paddingTop:'2%',
+		},600);
+
+		var temp = "";
+
+		temp += "<a href='summary_1.html'>于微标科技观北大教授演讲总结</a><br/>";
+		temp += "<a href='summary_2.html'>观金一南在华为演讲演讲总结</a><br/>";
+		temp += "<a href='summary_3.html'>夏令营入门思想引导总结-2017</a><br/>";
+		temp += "<a href='summary_4.html'>关于代码-代码规范</a><br/>";
+		temp += "<a href='summary_5.html'>2017-夏令营培训-第一阶段&最后阶段-总结</a><br/>";
+
+		document.getElementById('boke1_summary').innerHTML = temp;
+
+	}
+	else{
+		$("#boke1_summary").animate({
+			left:'',
+			height:'120px',
+		    width:'20px',
+		    opacity:'1',
+		    padding:'5px'
+		},1200);
+
+		document.getElementById('boke1_summary').innerHTML = "个人总结";
+	}
+	clickNum++;
+}
