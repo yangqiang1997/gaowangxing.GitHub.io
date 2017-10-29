@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="summary.css">
+        <script type="text/javascript" src=""></script>
+        <script type="text/javascript" src="jquery.js"></script>
+        <meta charset="utf-8">
+        <title>个人总结 IV</title>
+
+        <style type="text/css">
+        body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+        body{font:20px"微软雅黑","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+        a{color:#2d374b;text-decoration:none} 
+        a:hover{color:#cd0200;text-decoration:underline} 
+        em{font-style:normal} 
+        li{list-style:none} 
+        img{border:0;vertical-align:middle} 
+        table{border-collapse:collapse;border-spacing:0} 
+        p{word-wrap:break-word} 
+        </style>
+
+    </head>
+
+    <body class="summary" id="summary">
+
+        <div id="summary_content" class="summary_content" onclick="boke1_showContent()"></div>
+
+        <a href="boke1.html">
+            <div id="back" class="back">
+                返回
+            </div>
+        </a>
+
+    </body>
+
+    <script type="text/javascript">
+        $("#summary").hide(0);
+        $("#summary").show(2000);
+        $("#summary_content").hide(0);
+        $("#summary_content").show(1000);
+
+        var str = "<b><span font='28px'>关于代码-代码规范</span></b>";
+
+            str += "+<br/><b>一、代码规范</b>";
+            str += "+&#160;&#160;看了代码规范方面时，对我的触动很大，因为其中说到的很多问";
+            str += "+题我都存在。在交了几次培训任务后，每次学长都会将我们代码存在";
+            str += "+的不规范的问题，我虽然改了很多了，但是没有把这个问题的严重性";
+            str += "+映射到心里去。";
+            str += "+&#160;&#160;在代码的内容方面虽然有所改善，但是对于代码的各种命名和结";
+            str += "+构层次我确实做得很不到位。从工程说起，我对工程的命名不能准确";
+            str += "+的表达这个工程是拿来干嘛的。而内层的包分层及其不规范，例如jsp";
+            str += "+任务的M-V-C三层都没有准确的分出来，对代码的结构层次没有做到";
+            str += "+位。而包中的类名有的用的驼峰式命名，有的用的下划线命名，非常";
+            str += "+不统一。而代码内部的命名问题主要是不够准确，不能简洁的表明变";
+            str += "+量的用途，而有的变量名会给人造成歧义。";
+
+            str += "+<b>我需要改进的方面：</b>";
+            str += "+1. 命名风格统一，不要一个模块下的各个分块命名混乱不一。";
+            str += "+2. 结构层次分块要清晰、利用命名加以区分。";
+            str += "+3. 单个模块的命名要简介、明确、精准的指出这个模块的功能。";
+            str += "+4. 代码布局语义化，给人以清晰的层次，符合人们的逻辑思维。";
+
+            str += "+<br/><b>二、函数规范</b>";
+            str += "+&#160;&#160;在代码构成的大厦中，函数可以说是整栋大厦的支撑梁，每一个";
+            str += "+关键点都需要高质量的支撑梁来保证整栋大楼的稳固。所以函数的质";
+            str += "+量高低是整个工程的质量保证。我在函数功能的分块方面还有待加强，";
+            str += "+有的函数传参太多、有的层次不够明显、还有的函数长度没有把握好，";
+            str += "+这些都是我们代码存在的缺陷。";
+    
+            str += "+<b>我需要改进的方面：</b>";
+            str += "+1. 每一个函数实现单一功能，不同的函数功能不穿插。";
+            str += "+2. 函数分层明确，由功能自上而下，由难化简，给人以清晰地逻辑层次";
+            str += "+3. 控制好函数的长度和复杂度，不能出现长度和复杂度都很高的函数。";
+            str += "+4. 函数传参尽量控制数量，多个参数的传递会给使用者带来很大困扰。";
+            str += "+5. 不能出现代码相似度很高的两个函数，这样的函数完全有可能整合的。";
+
+            str += "+<br/><b>三、类的封装</b>";
+            str += "+&#160;&#160;类的封装是指把数据与行为相结合形成一个机整体，并对外隐藏";
+            str += "+行为的实现细节，仅通过公开的接口与 对象通信。封装增强安全性";
+            str += "+和简化编程，使用者不必了解具体的实现细节，而只是 要通过外部";
+            str += "+接口，以特定的访问权限来使用类的成员。 要通过外部";
+    
+            str += "+<b>而封装的目的有：</b>";
+            str += "+1.  简化使用的难度，使用者不必知道如何具体实现的，只要知道输入和输";
+            str += "+出就能正常使用。";
+            str += "+2. 提高代码安全性，只能通过接口访问对象的状态、向对象发送指令，保";
+            str += "+证了对象本身的安全。";
+
+            str += "+<br/><b>&#160;&#160;代码如诗，要让自己写的代码像诗那样优美，要让其他程序员你";
+            str += "+的代码也像诗那样优美，要让不会写的代码的人都觉得你写得优美。</b>";
+
+
+            var len=str.length;
+            var i=0;
+            var newString="";
+            function showword(){
+
+                if(str.charAt(i) == '+'){
+                    newString += "</br>";
+                }
+                else{
+                    newString += str.charAt(i);
+                }
+
+                document.getElementById("summary_content").innerHTML=newString;
+
+                i++;
+                if(i>len){
+                    newString += "<div class='' id='boke1_content_1'></div>";
+                    document.getElementById("summary_content").innerHTML=newString;
+                    clearInterval(done);
+                    boke1_firstDo();
+                }
+            }
+        var done = setInterval("showword()",30);
+    </script>
+
+</html>
