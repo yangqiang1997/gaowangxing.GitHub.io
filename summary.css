@@ -1,0 +1,66 @@
+.summary{
+	background: url(Boke_img1.jpg) 100% 100% no-repeat ;
+	background-size:100% 100%;
+	background-attachment: fixed;
+	height: 1300px;
+	height: 800px;
+}
+
+.summary_content{
+	z-index: 1;
+	color: gray;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	font-family: KaiTi;
+	font-size: 25px;
+	line-height:40px;
+	width: 70%;
+	border-radius: 10px;
+	background: url(Boke_img3.jpg) 100% 100% no-repeat ;
+	background-size:100% 100%;
+	padding-left: 50px;
+	padding-top: 40px;
+	padding-bottom: 100px;
+	opacity:0.9;
+}
+.summary_content:hover{
+	cursor:pointer;
+}
+.back{
+	width: 40px;
+	height: 40px;
+	background-color: cyan;
+	color: white;
+	position:absolute;
+	left: 85%;
+	top: 600px;
+	border:none;
+	border-radius: 5px;
+	line-height: 40px;
+	padding: 8px;
+	font-size: 18px;
+	-webkit-transition:-webkit-transform 1s;
+}
+.back:hover{
+	cursor:pointer;
+	color: #666;
+	background-color:lightblue;
+	-webkit-transform:rotate(1080deg);
+}
+.summary_button1{
+	font-size: 14px;
+	height: 40px;
+	width: 30%;
+	color: #666;
+	border: none;
+	background-color: cyan;
+	border-radius: 3px;
+	margin-top: 10px;
+	margin-left: 10%;
+}
+.summary_button1:hover{
+	background-color: lightgreen;
+	border:solid 1px white;
+	cursor:pointer;
+}
