@@ -1,0 +1,12 @@
+rootProject.name = 'nevis'
+
+include "nevis-bn:bn-api"
+include "nevis-bn:bn-service"
+include "nevis-bn:bn-service-impl"
+include "nevis-bn:bn-entity"
+include "nevis-bn:bn-util"
+include "nevis-bn:bn-dao"
+include "nevis-bn:bn-web"
+
+include "nevis-auth"
+include "nevis-global"

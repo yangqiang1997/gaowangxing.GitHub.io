@@ -1,0 +1,23 @@
+group 'com.cqut'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+ext {
+    springBootVersion = '2.0.0.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version:  '2.0.0.RELEASE'
+    compile group: 'org.flywaydb', name: 'flyway-core', version: '5.0.7'
+}
+
+
+

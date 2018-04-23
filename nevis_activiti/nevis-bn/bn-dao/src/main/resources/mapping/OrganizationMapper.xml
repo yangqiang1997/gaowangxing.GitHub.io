@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.OrganizationMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.Organization">
+        <id property="organizationId" column="organization_id"/>
+        <result property="organizationTypeId" column="organization_type_id"/>
+        <result property="organizationName" column="organization_name"/>
+        <result property="parentOrganizationId" column="parent_organization_id"/>
+        <result property="isExpired" column="is_expired"/>
+        <result property="isLock" column="is_lock"/>
+        <result property="remark" column="remark"/>
+        <result property="createId" column="create_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="organizationTypeName" column="organization_type_name"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_organization
+        where organization_id = #{organizationId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.Organization">
+        insert into sys_organization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="organizationId != null">
+                organization_id,
+            </if>
+            <if test="organizationTypeId != null">
+                organization_type_id,
+            </if>
+            <if test="organizationName != null">
+                organization_name,
+            </if>
+            <if test="parentOrganizationId != null">
+                parent_organization_id,
+            </if>
+            <if test="isExpired != null">
+                is_expired,
+            </if>
+            <if test="isLock != null">
+                is_lock,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="organizationId != null">
+                #{organizationId,jdbcType=VARCHAR},
+            </if>
+            <if test="organizationTypeId != null">
+                #{organizationTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="organizationName != null">
+                #{organizationName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentOrganizationId != null">
+                #{parentOrganizationId,jdbcType=VARCHAR},
+            </if>
+            <if test="isExpired != null">
+                #{isExpired,jdbcType=BIT},
+            </if>
+            <if test="isLock != null">
+                #{isLock,jdbcType=BIT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=BIT},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                #{updateId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cqut.entity.entity.Organization">
+        update sys_organization
+        <set>
+            <if test="organizationTypeId != null">
+                organization_type_id = #{organizationTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="organizationName != null">
+                organization_name = #{organizationName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentOrganizationId != null">
+                parent_organization_id = #{parentOrganizationId,jdbcType=VARCHAR},
+            </if>
+            <if test="isExpired != null">
+                is_expired = #{isExpired,jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+                is_lock = #{isLock,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where organization_id = #{organizationId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select organization_id, organization_type_id, organization_name, parent_organization_id,
+            is_expired, is_lock, remark, create_id, create_time, update_id, update_time, is_delete
+        from sys_organization
+        where organization_id = #{organizationId,jdbcType=VARCHAR}
+        AND is_delete = '0'
+    </select>
+
+    <select id="selectAllOrg" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            sys_organization org,
+            sys_organization_type typ
+        WHERE
+            is_delete = '0'
+            AND org.organization_type_id = typ.organization_type_id
+    </select>
+
+    <select id="selectOrgByUserId" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            sys_organization
+        WHERE
+            organization_id LIKE CONCAT(
+                (SELECT
+                    organization_id
+                FROM
+                    sys_organization_user
+                WHERE
+                    user_id = #{userId,jdbcType=VARCHAR}),
+                    '%'
+            )
+        AND is_delete = 0
+    </select>
+
+    <update id="deleteOrg">
+        update sys_organization
+        SET is_delete = #{trueFlag, jdbcType = BIT}
+        WHERE organization_id LIKE CONCAT (#{orgId,jdbcType=VARCHAR},'%')
+    </update>
+
+    <select id="findChildrenMaxCode" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT
+          MAX(organization_id)
+        FROM
+          `sys_organization`
+        <where>
+            <if test="parentId == null">
+                parent_organization_id IS NULL
+            </if>
+            <if test="parentId != null">
+                parent_organization_id = #{parentId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOrg" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM
+        `sys_organization`
+        WHERE
+         organization_id = #{orgId,jdbcType=VARCHAR}
+         AND  is_delete = FALSE
+    </select>
+
+    <select id="existOrgName" parameterType="java.lang.String" resultType="boolean">
+        SELECT
+        COUNT(*)
+        FROM
+            `sys_organization`
+        <where>
+            organization_name = #{organizationName,jdbcType=VARCHAR}
+            AND is_delete = #{state,jdbcType=TINYINT}
+            AND organization_id LIKE CONCAT (#{parentId,jdbcType=VARCHAR},'%')
+            <if test="organizationId != null">
+                AND organization_id != #{organizationId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="existOrgNameForCompany" parameterType="java.lang.String" resultType="boolean">
+        SELECT
+        COUNT(*)
+        FROM
+        `sys_organization`
+        <where>
+            parent_organization_id is NULL
+            AND organization_name = #{organizationName,jdbcType=VARCHAR}
+            AND is_delete = #{state,jdbcType=TINYINT}
+            <if test="organizationId != null">
+                AND organization_id != #{organizationId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

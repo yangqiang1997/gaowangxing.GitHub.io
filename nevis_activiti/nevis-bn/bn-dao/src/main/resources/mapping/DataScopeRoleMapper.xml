@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.DataScopeRoleMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.DataScopeRole">
+        <constructor>
+            <arg column="role_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="organization_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.DataScopeRole">
+        insert into sys_data_scope_role (role_id, organization_id)
+        values (#{roleId,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select role_id, organization_id
+        from sys_data_scope_role
+    </select>
+
+    <select id="findRoleDataScopes" resultType="java.lang.String">
+        SELECT
+            organization_id
+        FROM
+            sys_data_scope_role
+        WHERE
+            role_id = #{roleId, jdbcType = VARCHAR}
+    </select>
+</mapper>

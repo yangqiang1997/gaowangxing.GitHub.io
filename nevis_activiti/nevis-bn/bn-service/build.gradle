@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile "org.activiti:activiti-spring-boot-starter-basic:6.0.0"
+    compile project(":nevis-bn:bn-entity")
+    compile project(':nevis-auth')
+}

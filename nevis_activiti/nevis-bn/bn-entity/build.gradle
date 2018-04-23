@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group 'com.cqut'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+ext {
+    springBootVersion = '2.0.0.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+
+    compile project(':nevis-bn:bn-util')
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.OrganizationTypeMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.OrganizationType">
+        <id property="organizationTypeId" column="organization_type_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="organizationTypeName" column="organization_type_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="organizationExtensionInfoTableName" column="organization_extension_info_table_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="addUrl" column="add_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="editUrl" column="edit_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="detailUrl" column="detail_url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_organization_type
+        where organization_type_id = #{organizationTypeId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.OrganizationType">
+        insert into sys_organization_type (organization_type_id, organization_type_name,
+            organization_extension_info_table_name, add_url,
+            edit_url, detail_url)
+        values (#{organizationTypeId,jdbcType=VARCHAR}, #{organizationTypeName,jdbcType=VARCHAR},
+            #{organizationExtensionInfoTableName,jdbcType=VARCHAR}, #{addUrl,jdbcType=VARCHAR},
+            #{editUrl,jdbcType=VARCHAR}, #{detailUrl,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cqut.entity.entity.OrganizationType">
+        update sys_organization_type
+        set organization_type_name = #{organizationTypeName,jdbcType=VARCHAR},
+            organization_extension_info_table_name = #{organizationExtensionInfoTableName,jdbcType=VARCHAR},
+            add_url = #{addUrl,jdbcType=VARCHAR},
+            edit_url = #{editUrl,jdbcType=VARCHAR},
+            detail_url = #{detailUrl,jdbcType=VARCHAR}
+        where organization_type_id = #{organizationTypeId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select organization_type_id, organization_type_name, organization_extension_info_table_name,
+            add_url, edit_url, detail_url
+        from sys_organization_type
+        where organization_type_id = #{organizationTypeId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select *
+        from sys_organization_type
+    </select>
+</mapper>

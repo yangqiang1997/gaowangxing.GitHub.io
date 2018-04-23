@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.ActivitiRecordMapper">
+
+    <select id="getTaskRecord" parameterType="java.lang.String" resultType="com.cqut.entity.dto.activiti.ProcessRecordResultDTO">
+       SELECT
+        node_order nodeOrder,
+        complete_time completeDate,
+        complete_user_id completeUserId,
+        node_data_id nodeDataId
+      FROM
+        activiti_task_record
+      WHERE
+        process_instance_id = #{processInstanceId,jdbcType=VARCHAR}
+      ORDER BY node_order
+    </select>
+
+    <select id="getLastRecord" parameterType="java.lang.String" resultType="com.cqut.entity.dto.activiti.ProcessRecordResultDTO">
+        SELECT
+        node_order nodeOrder,
+        MAX(complete_time) completeDate,
+        complete_user_id completeUserId,
+        node_data_id nodeDataId
+        FROM
+        activiti_task_record
+        WHERE
+        process_instance_id = #{processInstanceId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.cqut.entity.dto.activiti.TaskRecordDTO">
+        INSERT INTO activiti_task_record (
+        process_instance_id,
+        task_id,
+        complete_user_id,
+        complete_time,
+        node_order,
+        node_data_id
+        )
+        VALUES (#{processId,jdbcType=VARCHAR},
+                  #{taskId,jdbcType=VARCHAR},
+                  #{completeUserId,jdbcType=VARCHAR},
+                  now(),
+                  #{nodeOrder,jdbcType=INTEGER} ,
+                  #{nodeDataId,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>

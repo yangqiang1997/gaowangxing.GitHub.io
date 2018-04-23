@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.OrganizationUserMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.OrganizationUser">
+        <constructor>
+            <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="organization_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="Column_Without_Password">
+        sys_user.user_id, account, user_name, user_sex, birthdate, phone_number, user_email,
+        qq_number, wechart_number, head_portrait, working_status, sys_user.is_expired, sys_user.is_lock, sys_user.is_disabled,
+        user_remark, sys_user.create_id, sys_user.create_time, sys_user.update_id, sys_user.update_time, sys_user.is_delete
+    </sql>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.OrganizationUser">
+        insert into sys_organization_user (user_id, organization_id)
+        values (#{record.userId,jdbcType=VARCHAR}, #{record.organizationId,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.cqut.entity.entity.OrganizationUser">
+        UPDATE sys_organization_user SET organization_id = #{organizationId,jdbcType=VARCHAR} WHERE user_id = #{userId, jdbcType = VARCHAR}
+    </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select user_id, organization_id
+        from sys_organization_user
+    </select>
+
+    <select id="selectUserOrganizations" resultType="java.lang.String">
+        SELECT
+        ou.organization_id
+        FROM
+        sys_organization_user ou,
+        sys_organization o
+        WHERE
+        ou.organization_id = o.organization_id
+        AND user_id = #{userId, jdbcType = VARCHAR}
+        AND o.is_delete = FALSE
+        AND o.is_lock = FALSE
+        AND o.is_expired = FALSE
+    </select>
+
+    <select id="selectUserExesit" resultType="boolean">
+        SELECT COUNT(*)>0
+        FROM
+        sys_organization_user
+        WHERE
+        organization_id = #{orgId,jdbcType = VARCHAR}
+    </select>
+
+    <delete id="deleteUserOrganization" parameterType="java.lang.String">
+        DELETE FROM sys_organization_user WHERE user_id = #{userId, jdbcType = VARCHAR}
+    </delete>
+
+    <delete id="deleteOrganizationUser" parameterType="java.lang.String">
+        DELETE
+        FROM
+            sys_organization_user
+        WHERE
+            organization_id LIKE CONCAT　(#{organizationId, jdbcType = VARCHAR},'%')
+    </delete>
+
+    <delete id="deleteByUserIdAndOrgID" parameterType="java.lang.String">
+        DELETE FROM sys_organization_user
+        WHERE organization_id = #{organizationId, jdbcType = VARCHAR} AND
+              user_id = #{userId, jdbcType = VARCHAR}
+    </delete>
+
+    <delete id="deleteByOrgId" parameterType="java.lang.String">
+        DELETE FROM sys_organization_user
+        WHERE organization_id LIKE CONCAT (#{organizationId, jdbcType = VARCHAR},'%')
+    </delete>
+
+    <select id="findUserOrganization" resultType="Integer">
+        SELECT count(*) FROM sys_organization_user WHERE user_id = #{userId, jdbcType = VARCHAR}
+    </select>
+
+    <select id="selectOrgUsers" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Column_Without_Password" />,sys_role.role_id roleId,sys_role.role_name roleName,
+        sys_organization_user.organization_id orgId,
+        sys_organization.organization_name orgName
+        FROM
+        (sys_user,sys_organization,sys_organization_user)
+        LEFT JOIN sys_user_role ON sys_user_role.user_id = sys_user.user_id
+        LEFT JOIN sys_role ON sys_role.role_id = sys_user_role.role_id
+        WHERE
+            sys_organization_user.user_id = sys_user.user_id
+            AND sys_organization_user.organization_id LIKE CONCAT(#{orgId,jdbcType=VARCHAR},'%')
+            AND sys_organization.organization_id = sys_organization_user.organization_id
+    </select>
+
+    <select id="selectAllOrg" resultType="com.cqut.entity.dto.role.ElTreeDTO">
+        SELECT
+            organization_id id,
+            organization_name label,
+            organization_id `value`,
+            parent_organization_id parentId
+        FROM
+            sys_organization org,
+            sys_organization_type typ
+        WHERE
+            is_delete = '0'
+        AND org.organization_type_id = typ.organization_type_id
+    </select>
+</mapper>

@@ -1,0 +1,3 @@
+ALTER TABLE `sys_role` ADD `data_scope` enum('ALL', 'COMPANY_AND_CHILD', 'COMPANY', 'DEPARTMENT_AND_CHILD', 'DEPARTMENT', 'SELF', 'CUSTOM');
+
+ALTER TABLE  `sys_resource`  ADD `level0` VARCHAR(20);

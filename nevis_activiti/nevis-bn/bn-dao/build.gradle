@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+
+dependencies {
+
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+//    runtime('mysql:mysql-connector-java:6.0.6')
+    compile 'com.alibaba:druid:1.1.9'
+
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+
+    compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.3'
+
+    compile project(':nevis-bn:bn-entity')
+    compile project(':nevis-auth')
+}

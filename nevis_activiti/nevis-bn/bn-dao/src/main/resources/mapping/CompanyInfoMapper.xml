@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.CompanyInfoMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.CompanyInfo">
+        <id property="companyInfoId" column="company_info_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="companyRegisteredAddress" column="company_registered_address" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="area" column="area" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="businessLicense" column="business_license" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="uniformIdentificationCode" column="uniform_identification_code" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="companyLegalPerson" column="company_legal_person" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="companyLegalPersonPhoneNumber" column="company_legal_person_phone_number" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="companyStatus" column="company_status" javaType="java.lang.Boolean" jdbcType="BIT"/>
+        <result property="organizationId" column="organization_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_company_info
+        where company_info_id = #{companyInfoId,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="deleteByOrgId" parameterType="java.lang.String">
+        delete from sys_company_info
+        where organization_id = #{orgId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.CompanyInfo">
+        insert into sys_company_info (company_info_id, company_registered_address,
+        area, business_license, uniform_identification_code,
+        company_legal_person, company_legal_person_phone_number,
+        company_status, organization_id)
+        values (#{companyInfo.companyInfoId,jdbcType=VARCHAR}, #{companyInfo.companyRegisteredAddress,jdbcType=VARCHAR},
+        #{companyInfo.area,jdbcType=VARCHAR}, #{companyInfo.businessLicense,jdbcType=VARCHAR}, #{companyInfo.uniformIdentificationCode,jdbcType=VARCHAR},
+        #{companyInfo.companyLegalPerson,jdbcType=VARCHAR}, #{companyInfo.companyLegalPersonPhoneNumber,jdbcType=VARCHAR},
+        #{companyInfo.companyStatus,jdbcType=BIT}, #{companyInfo.organizationId,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cqut.entity.entity.CompanyInfo">
+        update sys_company_info
+            set company_registered_address = #{companyInfo.companyRegisteredAddress,jdbcType=VARCHAR},
+            area = #{companyInfo.area,jdbcType=VARCHAR},
+            business_license = #{companyInfo.businessLicense,jdbcType=VARCHAR},
+            uniform_identification_code = #{companyInfo.uniformIdentificationCode,jdbcType=VARCHAR},
+            company_legal_person = #{companyInfo.companyLegalPerson,jdbcType=VARCHAR},
+            company_legal_person_phone_number = #{companyInfo.companyLegalPersonPhoneNumber,jdbcType=VARCHAR},
+            company_status = #{companyInfo.companyStatus,jdbcType=BIT},
+            organization_id = #{companyInfo.organizationId,jdbcType=VARCHAR}
+        where company_info_id = #{companyInfo.companyInfoId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select company_info_id, company_registered_address, area, business_license, uniform_identification_code,
+            company_legal_person, company_legal_person_phone_number, company_status, organization_id
+            from sys_company_info
+            where company_info_id = #{companyInfoId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select company_info_id, company_registered_address, area, business_license, uniform_identification_code,
+            company_legal_person, company_legal_person_phone_number, company_status, organization_id
+        from sys_company_info
+    </select>
+
+    <select id="selectByOrgId" resultMap="BaseResultMap">
+        select company_info_id, company_registered_address, area, business_license, uniform_identification_code,
+        company_legal_person, company_legal_person_phone_number, company_status, organization_id
+        from sys_company_info
+        WHERE organization_id = #{orgId,jdbcType=VARCHAR}
+    </select>
+</mapper>

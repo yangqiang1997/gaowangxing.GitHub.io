@@ -1,0 +1,33 @@
+{
+  "menu": [
+    {
+      "subMenu": "基础数据",
+      "icon": "icon-cheliangguanli",
+      "to":"",
+      "menuGroup": [
+        {
+          "label": "首页",
+          "to": "/",
+           "class":"/"
+        },
+        {
+          "label": "资源管理",
+          "to": "/resource"
+        },
+        {
+          "label": "角色管理",
+          "to": "/roleManagement"
+        },
+        {
+          "label": "组织结构管理",
+          "to": "/orgManagment"
+        },
+        {
+          "label":"用户管理",
+          "to":"/userManagement"
+        }
+      ]
+    }
+  ]
+}
+

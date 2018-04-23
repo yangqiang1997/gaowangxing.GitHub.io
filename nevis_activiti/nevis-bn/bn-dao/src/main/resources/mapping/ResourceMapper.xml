@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqut.mapper.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.Resource">
+        <id column="resource_id" property="resourceId" jdbcType="VARCHAR"/>
+        <result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+        <result column="resource_path" property="resourcePath" jdbcType="VARCHAR"/>
+        <result column="level0" property="level0" jdbcType="VARCHAR"/>
+        <result column="resource_icon_class" property="resourceIconClass" jdbcType="VARCHAR"/>
+        <result column="resource_show_order" property="resourceShowOrder" jdbcType="TINYINT"/>
+        <result column="parent_resource_id" property="parentResourceId" jdbcType="VARCHAR"/>
+        <result column="is_menu" property="isMenu" jdbcType="BIT"/>
+        <result column="authorization_token" property="authorizationToken" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="TreeMenu" type="com.cqut.entity.entity.menu.TreeMenu">
+        <id column="resource_id" property="resourceId" jdbcType="VARCHAR"/>
+        <result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+        <result column="resource_path" property="resourcePath" jdbcType="VARCHAR"/>
+        <result column="level0" property="level0" jdbcType="VARCHAR"/>
+        <result column="resource_icon_class" property="resourceIconClass" jdbcType="VARCHAR"/>
+        <result column="resource_show_order" property="resourceShowOrder" jdbcType="TINYINT"/>
+        <result column="parent_resource_id" property="parentResourceId" jdbcType="VARCHAR"/>
+        <result column="is_menu" property="isMenu" jdbcType="BIT"/>
+        <result column="authorization_token" property="authorizationToken" jdbcType="VARCHAR"/>
+        <collection column="
+        {resourceId = resource_id, parentResourceId = parent_resource_id}"
+                    property="children" javaType="java.util.List" select="findResourceOfChildren"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        resource_id, resource_name, resource_path, level0, resource_icon_class, resource_show_order,
+        parent_resource_id, is_menu, authorization_token
+    </sql>
+
+    <select id="selectByPrimaryKey" resultType="com.cqut.entity.dto.resource.ResourceDTO">
+        select
+        a.resource_id resourceId, a.is_menu isMenu,a.resource_name resourceName, a.resource_path resourcePath, a.level0
+        level0, a.resource_icon_class resourceIconClass, a.resource_show_order resourceShowOrder,
+        a.parent_resource_id parentResourceId, a.authorization_token authorizationToken
+        <if test="resourceId.length > 9">
+            ,b.resource_name parentName
+        </if>
+        from sys_resource a
+        <if test="resourceId.length > 9">
+            ,sys_resource b
+        </if>
+        where a.resource_id = #{resourceId,jdbcType=VARCHAR}
+        <if test="resourceId.length > 9">
+            and b.resource_id=a.parent_resource_id
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_resource
+        where resource_id = #{resourceId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.Resource">
+        insert into sys_resource (resource_id, resource_name, resource_path,
+            level0, resource_icon_class, resource_show_order,
+            parent_resource_id, is_menu, authorization_token
+        )
+        values (#{resourceId,jdbcType=VARCHAR}, #{resourceName,jdbcType=VARCHAR}, #{resourcePath,jdbcType=VARCHAR},
+            #{level0,jdbcType=VARCHAR}, #{resourceIconClass,jdbcType=VARCHAR}, #{resourceShowOrder,jdbcType=TINYINT},
+            #{parentResourceId,jdbcType=VARCHAR}, #{isMenu,jdbcType=BIT}, #{authorizationToken,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.cqut.entity.dto.resource.ResourceDTO">
+        insert into sys_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                resource_id,
+            </if>
+            <if test="resourceName != null">
+                resource_name,
+            </if>
+            <if test="resourcePath != null">
+                resource_path,
+            </if>
+            <if test="level0 != null">
+                level0,
+            </if>
+            <if test="resourceIconClass != null">
+                resource_icon_class,
+            </if>
+            <if test="resourceShowOrder != null">
+                resource_show_order,
+            </if>
+            <if test="parentResourceId != null and parentResourceId != ''">
+                parent_resource_id,
+            </if>
+            <if test="isMenu != null">
+                is_menu,
+            </if>
+            <if test="authorizationToken != null">
+                authorization_token,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="resourceId != null">
+                #{resourceId,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceName != null">
+                #{resourceName,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcePath != null">
+                #{resourcePath,jdbcType=VARCHAR},
+            </if>
+            <if test="level0 != null">
+                #{level0,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceIconClass != null">
+                #{resourceIconClass,jdbcType=VARCHAR},
+            </if>
+            <if test="resourceShowOrder != null">
+                #{resourceShowOrder,jdbcType=TINYINT},
+            </if>
+            <if test="parentResourceId != null and parentResourceId != ''">
+                #{parentResourceId,jdbcType=VARCHAR},
+            </if>
+            <if test="isMenu != null">
+                #{isMenu,jdbcType=BIT},
+            </if>
+            <if test="authorizationToken != null">
+                #{authorizationToken,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cqut.entity.dto.resource.ResourceDTO">
+        update sys_resource
+        set resource_name = #{resourceName,jdbcType=VARCHAR},
+            resource_path = #{resourcePath,jdbcType=VARCHAR},
+            level0 = #{level0,jdbcType=VARCHAR},
+            resource_icon_class = #{resourceIconClass,jdbcType=VARCHAR},
+            resource_show_order = #{resourceShowOrder,jdbcType=TINYINT},
+            parent_resource_id = #{parentResourceId,jdbcType=VARCHAR},
+            is_menu = #{isMenu,jdbcType=BIT},
+            authorization_token = #{authorizationToken,jdbcType=VARCHAR}
+        where resource_id = #{resourceId,jdbcType=VARCHAR}
+    </update>
+
+    <resultMap id="subMenuMap" type="com.cqut.entity.entity.menu.SubMenu">
+        <result column="resource_name" property="subMenu" jdbcType="VARCHAR"/>
+        <result column="resource_icon_class" property="icon" jdbcType="VARCHAR"/>
+        <result column="resource_path" property="to" jdbcType="VARCHAR"/>
+        <result column="level0" property="index" jdbcType="VARCHAR"/>
+        <collection column="{userId = user_id, resourceId = resource_id}" property="menuGroup" javaType="java.util.List" select="findLabel"/>
+    </resultMap>
+
+    <resultMap id="labelMap" type="com.cqut.entity.entity.menu.Label">
+        <result column="resource_name" property="label" jdbcType="VARCHAR"/>
+        <result column="resource_path" property="to" jdbcType="VARCHAR"/>
+        <result column="level0" property="index" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findMenus" resultMap="subMenuMap">
+        SELECT
+	        ur.user_id,
+	        r.resource_id,
+	        r.resource_name,
+	        r.resource_path,
+	        r.resource_icon_class,
+	        r.level0
+        FROM
+	        sys_resource r,
+	        sys_resource_role rr,
+	        sys_user_role ur,
+	        sys_role role
+        WHERE
+	        r.is_menu = TRUE
+        AND ur.role_id = rr.role_id
+        AND r.resource_id = rr.resource_id
+        AND r.parent_resource_id IS NULL
+        AND ur.user_id = #{userId, jdbcType = VARCHAR}
+        AND ur.role_id = role.role_id
+        AND role.is_delete = FALSE
+    </select>
+
+    <select id="findLabel" resultMap="labelMap">
+        SELECT
+	        r.resource_name,
+	        r.resource_path,
+	        r.level0
+        FROM
+	        sys_resource r,
+	        sys_resource_role rr,
+	        sys_user_role ur,
+	        sys_role role
+        WHERE
+	        r.is_menu = TRUE
+        AND ur.role_id = rr.role_id
+        AND r.resource_id = rr.resource_id
+        AND r.parent_resource_id = #{resourceId, jdbcType = VARCHAR}
+        AND ur.user_id = #{userId, jdbcType = VARCHAR}
+        AND ur.role_id = role.role_id
+        AND role.is_delete = FALSE
+    </select>
+
+    <select id="findResourceMenus" resultMap="TreeMenu">
+        SELECT
+        resource_id, resource_name, resource_path,level0, resource_icon_class,
+        resource_show_order, parent_resource_id, is_menu, authorization_token
+        FROM
+        sys_resource
+        WHERE
+        <if test="resourceName != null">
+            resource_name LIKE concat('%',#{resourceName,jdbcType=VARCHAR},'%') AND
+        </if>
+        <if test="dataScope != null">
+            AND ${dataScope}
+        </if>
+        parent_resource_id IS NULL
+        ORDER BY resource_id, resource_show_order ASC
+    </select>
+
+    <select id="findResourceOfChildren" resultMap="TreeMenu">
+        SELECT
+        resource_id, resource_name, resource_path,level0, resource_icon_class,
+        resource_show_order, parent_resource_id, is_menu, authorization_token
+        FROM
+        sys_resource
+        WHERE
+        parent_resource_id = #{resourceId, jdbcType=VARCHAR}
+        ORDER BY resource_id, resource_show_order ASC
+    </select>
+
+    <select id="findMaxIdByParentId" resultType="java.util.HashMap">
+        SELECT
+        MAX(resource_id) AS maxId
+        FROM
+        sys_resource
+        WHERE
+        <if test="parentResourceId == null">
+            parent_resource_id IS NULL
+        </if>
+        <if test="parentResourceId != null">
+            parent_resource_id = #{parentResourceId, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="searchResource" resultType="com.cqut.entity.dto.resource.ResourceDTO">
+        SELECT
+        resource_id resourceId, resource_name resourceName, resource_path resourcePath, level0, resource_icon_class resourceIconClass, resource_show_order resourceShowOrder,
+        parent_resource_id parentResourceId, is_menu isMenu, authorization_token authorizationToken
+        FROM
+        sys_resource
+        WHERE
+        resource_name LIKE concat('%',#{resourceName,jdbcType=VARCHAR},'%')
+        <if test="dataScope != null">
+            AND ${dataScope}
+        </if>
+        AND parent_resource_id
+        NOT IN (
+            SELECT
+                resource_id
+            FROM
+                sys_resource
+            WHERE
+            <if test="resourceName != null">
+                resource_name LIKE concat('%',#{resourceName,jdbcType=VARCHAR},'%') AND
+            </if>
+			    parent_resource_id IS NULL
+            )
+    </select>
+
+    <select id="findChild" resultType="com.cqut.entity.dto.resource.ResourceDTO">
+        SELECT
+        resource_id resourceId, resource_name resourceName, resource_path resourcePath, level0, resource_icon_class resourceIconClass, resource_show_order resourceShowOrder,
+        parent_resource_id parentResourceId, is_menu isMenu, authorization_token authorizationToken
+        FROM
+        sys_resource
+        <where>
+        parent_resource_id LIKE concat(#{resourceId,jdbcType=VARCHAR},'%')
+        </where>
+    </select>
+
+    <select id="findParent" resultType="com.cqut.entity.dto.resource.ResourceDTO">
+        SELECT
+        resource_id resourceId, resource_name resourceName, resource_path resourcePath, level0, resource_icon_class resourceIconClass, resource_show_order resourceShowOrder,
+        parent_resource_id parentResourceId, is_menu isMenu, authorization_token authorizationToken
+        FROM
+        sys_resource
+        <where>
+            resource_id = #{parentResourceId,jdbcType=VARCHAR}
+        </where>
+        ORDER BY resource_id, resource_show_order ASC
+    </select>
+
+    <select id="firstLevelMenu" resultType="com.cqut.entity.dto.resource.ResourceDTO">
+        SELECT
+        resource_id resourceId, resource_name resourceName, resource_path resourcePath, level0, resource_icon_class resourceIconClass, resource_show_order resourceShowOrder,
+        parent_resource_id parentResourceId, is_menu isMenu, authorization_token authorizationToken
+        FROM
+        sys_resource
+        <where>
+            <if test="resourceName != null">
+                resource_name LIKE concat('%',#{resourceName,jdbcType=VARCHAR},'%') AND
+            </if>
+            parent_resource_id IS NULL
+        </where>
+        ORDER BY resource_id, resource_show_order ASC
+    </select>
+
+    <delete id="deleteByParent" parameterType="java.lang.String">
+        DELETE
+        FROM sys_resource
+        WHERE
+        resource_id LIKE concat(#{resourceId,jdbcType=VARCHAR},'%')
+    </delete>
+
+    <delete id="deleteRelationResourceRole" parameterType="java.lang.String">
+        DELETE
+        FROM sys_resource_role
+        WHERE
+        resource_id LIKE concat(#{resourceId,jdbcType=VARCHAR},'%')
+    </delete>
+
+    <select id="selectRoleId" resultType="com.cqut.entity.dto.role.ResultRoleDTO">
+        SELECT
+        role_id
+        FROM
+        sys_resource_role
+        WHERE
+        resource_id = #{resourceId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="setSource">
+        INSERT INTO sys_resource_role(
+        role_id,
+        resource_id
+        )
+        VALUES (#{roleId,jdbcType=VARCHAR}, #{resourceId,jdbcType=VARCHAR})
+    </insert>
+</mapper>

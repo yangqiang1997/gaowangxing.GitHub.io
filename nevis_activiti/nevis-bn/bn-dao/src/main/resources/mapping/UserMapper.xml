@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqut.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cqut.entity.entity.User">
+        <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="user_sex" jdbcType="VARCHAR" property="userSex"/>
+        <result column="birthdate" jdbcType="DATE" property="birthdate"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="qq_number" jdbcType="VARCHAR" property="qqNumber"/>
+        <result column="wechart_number" jdbcType="VARCHAR" property="wechartNumber"/>
+        <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait"/>
+        <result column="working_status" jdbcType="BIT" property="workingStatus"/>
+        <result column="is_expired" jdbcType="BIT" property="isExpired"/>
+        <result column="is_lock" jdbcType="BIT" property="isLock"/>
+        <result column="is_disabled" jdbcType="BIT" property="isDisabled"/>
+        <result column="user_remark" jdbcType="VARCHAR" property="userRemark"/>
+        <result column="create_id" jdbcType="VARCHAR" property="createId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_id" jdbcType="VARCHAR" property="updateId"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sys_user.user_id, account, password, user_name, user_sex, birthdate, phone_number, user_email,
+        qq_number, wechart_number, head_portrait, working_status, sys_user.is_expired, sys_user.is_lock, sys_user.is_disabled,
+        user_remark, sys_user.create_id, sys_user.create_time, sys_user.update_id, sys_user.update_time, sys_user.is_delete
+    </sql>
+
+    <sql id="Column_Without_Password">
+        sys_user.user_id, account, user_name, user_sex, birthdate, phone_number, user_email,
+        qq_number, wechart_number, head_portrait, working_status, sys_user.is_expired, sys_user.is_lock, sys_user.is_disabled,
+        user_remark, sys_user.create_id, sys_user.create_time, sys_user.update_id, sys_user.update_time, sys_user.is_delete
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.cqut.entity.entity.User">
+        insert into sys_user (user_id, account, password,
+            user_name, user_sex, birthdate,
+            phone_number, user_email, qq_number,
+            wechart_number, head_portrait, working_status,
+            is_expired, is_lock, is_disabled,
+            user_remark, create_id, create_time,
+            update_id, update_time, is_delete
+        )
+        values (#{userId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+            #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{birthdate,jdbcType=DATE},
+            #{phoneNumber,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{qqNumber,jdbcType=VARCHAR},
+            #{wechartNumber,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}, #{workingStatus,jdbcType=BIT},
+            #{isExpired,jdbcType=BIT}, #{isLock,jdbcType=BIT}, #{isDisabled,jdbcType=BIT},
+            #{userRemark,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+            #{updateId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIT}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.cqut.entity.entity.User">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="account != null">
+                account,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userSex != null">
+                user_sex,
+            </if>
+            <if test="birthdate != null">
+                birthdate,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="userEmail != null">
+                user_email,
+            </if>
+            <if test="qqNumber != null">
+                qq_number,
+            </if>
+            <if test="wechartNumber != null">
+                wechart_number,
+            </if>
+            <if test="headPortrait != null">
+                head_portrait,
+            </if>
+            <if test="workingStatus != null">
+                working_status,
+            </if>
+            <if test="isExpired != null">
+                is_expired,
+            </if>
+            <if test="isLock != null">
+                is_lock,
+            </if>
+            <if test="isDisabled != null">
+                is_disabled,
+            </if>
+            <if test="userRemark != null">
+                user_remark,
+            </if>
+            <if test="createId != null">
+                create_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="account != null">
+                #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                #{birthdate,jdbcType=DATE},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="qqNumber != null">
+                #{qqNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="wechartNumber != null">
+                #{wechartNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="headPortrait != null">
+                #{headPortrait,jdbcType=VARCHAR},
+            </if>
+            <if test="isWorking != null">
+                #{isWorking,jdbcType=BIT},
+            </if>
+            <if test="isExpired != null">
+                #{isExpired,jdbcType=BIT},
+            </if>
+            <if test="isLock != null">
+                #{isLock,jdbcType=BIT},
+            </if>
+            <if test="isDisabled != null">
+                #{isDisabled,jdbcType=BIT},
+            </if>
+            <if test="userRemark != null">
+                #{userRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                #{updateId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.cqut.entity.entity.User">
+        update sys_user
+        <set>
+            <if test="account != null">
+                account = #{account,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                user_sex = #{userSex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                birthdate = #{birthdate,jdbcType=DATE},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                user_email = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="qqNumber != null">
+                qq_number = #{qqNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="wechartNumber != null">
+                wechart_number = #{wechartNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="headPortrait != null">
+                head_portrait = #{headPortrait,jdbcType=VARCHAR},
+            </if>
+            <if test="workingStatus != null">
+                working_status = #{isWorking,jdbcType=BIT},
+            </if>
+            <if test="isExpired != null">
+                is_expired = #{isExpired,jdbcType=BIT},
+            </if>
+            <if test="isLock != null">
+                is_lock = #{isLock,jdbcType=BIT},
+            </if>
+            <if test="isDisabled != null">
+                is_disabled = #{isDisabled,jdbcType=BIT},
+            </if>
+            <if test="userRemark != null">
+                user_remark = #{userRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="createId != null">
+                create_id = #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=BIT},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.cqut.entity.entity.User">
+        update sys_user set
+            account = #{account,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR},
+            user_name = #{userName,jdbcType=VARCHAR},
+            user_sex = #{userSex,jdbcType=VARCHAR},
+            birthdate = #{birthdate,jdbcType=DATE},
+            phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            user_email = #{userEmail,jdbcType=VARCHAR},
+            qq_number = #{qqNumber,jdbcType=VARCHAR},
+            wechart_number = #{wechartNumber,jdbcType=VARCHAR},
+            head_portrait = #{headPortrait,jdbcType=VARCHAR},
+            working_status = #{workingStatus,jdbcType=BIT},
+            is_expired = #{isExpired,jdbcType=BIT},
+            is_lock = #{isLock,jdbcType=BIT},
+            is_disabled = #{isDisabled,jdbcType=BIT},
+            user_remark = #{userRemark,jdbcType=VARCHAR},
+            create_id = #{createId,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_id = #{updateId,jdbcType=VARCHAR},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            is_delete = #{isDelete,jdbcType=BIT}
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="loadUserByUsername" resultType="com.cqut.auth.entity.AuthUser">
+        SELECT
+	        u.user_id userId,
+	        account account,
+	        user_name userName,
+	        `password`,
+	        is_expired isExpired,
+	        is_lock isLock,
+	        u.is_disabled isDisabled,
+	        GROUP_CONCAT(r.authorization_token) authorities,
+	        GROUP_CONCAT(DISTINCT ro.role_id) roleIds
+        FROM
+	        sys_user u
+        LEFT JOIN sys_user_role ur ON u.user_id = ur.user_id
+        LEFT JOIN sys_role ro ON ro.role_id = ur.role_id AND ro.is_delete = #{falseFlag, jdbcType = BIT}
+        LEFT JOIN sys_resource_role rr ON rr.role_id = ur.role_id AND ro.is_delete = #{falseFlag, jdbcType = BIT}
+        LEFT JOIN sys_resource r ON r.resource_id = rr.resource_id
+        WHERE
+	        u.account = #{username, jdbcType = VARCHAR}
+        AND u.is_delete = #{falseFlag, jdbcType = BIT}
+        GROUP BY u.user_id
+    </select>
+
+    <select id="selectUsers" parameterType="com.cqut.entity.dto.user.UserSearchDTO" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Column_Without_Password" />,sys_role.role_id roleId,sys_role.role_name roleName,
+            sys_organization_user.organization_id orgId,
+            sys_organization.organization_name orgName
+        FROM
+            (sys_user)
+        LEFT JOIN sys_organization_user ON sys_organization_user.user_id=sys_user.user_id
+        LEFT JOIN sys_organization ON sys_organization.organization_id=sys_organization_user.organization_id
+        LEFT JOIN sys_user_role ON sys_user_role.user_id = sys_user.user_id
+        LEFT JOIN sys_role ON sys_role.role_id=sys_user_role.role_id
+        <where>
+            sys_user.is_delete = '0'
+            <if test="us.account != null">
+                AND account LIKE CONCAT('%', #{us.account, jdbcType = VARCHAR}, '%')
+            </if>
+            <if test="us.userName != null">
+                AND user_name LIKE CONCAT('%', #{us.userName, jdbcType = VARCHAR}, '%')
+            </if>
+            <if test="us.isLock != null">
+                AND sys_user.is_lock = #{us.isLock, jdbcType = BIT}
+            </if>
+            <if test="dataScope != null">
+                AND ${dataScope}
+            </if>
+            <if test="us.role != null">
+                AND sys_role.role_id = #{us.role, jdbcType = VARCHAR}
+            </if>
+            <if test="us.org != null">
+                AND sys_organization.organization_id=#{us.org, jdbcType = VARCHAR}
+            </if>
+        </where>
+        ORDER BY account DESC
+    </select>
+
+    <update id="softDeleteUser">
+        UPDATE
+            sys_user
+        SET
+            is_delete = #{trueFlag, jdbcType = BIT}
+        WHERE
+            user_id = #{userId, jdbcType = VARCHAR}
+    </update>
+
+    <select id="findUser" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Column_Without_Password" />,sys_role.role_id roleId,sys_role.role_name roleName,
+            sys_organization_user.organization_id orgId,
+            sys_organization.organization_name orgName
+        FROM
+            (sys_user)
+        LEFT JOIN sys_organization_user ON sys_organization_user.user_id=sys_user.user_id
+        LEFT JOIN sys_organization ON sys_organization.organization_id=sys_organization_user.organization_id
+        LEFT JOIN sys_user_role ON sys_user_role.user_id = sys_user.user_id
+        LEFT JOIN sys_role ON sys_role.role_id=sys_user_role.role_id
+        WHERE
+            sys_user.user_id = #{userId, jdbcType = VARCHAR}
+    </select>
+
+    <select id="validatePassword">
+        SELECT COUNT(*) FROM sys_user WHERE user_id = #{userId, jdbcType = VARCHAR} AND `password` = #{password, jdbcType = VARCHAR}
+    </select>
+
+    <update id="changeUserLockState">
+        UPDATE
+            sys_user
+        SET
+            is_lock = #{isLock, jdbcType = BIT}
+        WHERE
+            user_id = #{userId, jdbcType = VARCHAR}
+    </update>
+
+    <select id="existAccount" resultType="boolean">
+        SELECT COUNT(*) FROM sys_user WHERE account = #{account, jdbcType = VARCHAR} AND is_delete = 0
+    </select>
+
+    <select id="selectUserByOrgId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM sys_user
+        WHERE user_id IN (
+            SELECT user_id
+            FROM sys_organization_user
+            WHERE organization_id LIKE #{orgId,jdbcType = VARCHAR}
+        ) AND is_delete = '0'
+    </select>
+</mapper>
